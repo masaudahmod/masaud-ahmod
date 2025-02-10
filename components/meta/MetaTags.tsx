@@ -33,7 +33,7 @@ export default function MetaTags() {
       <meta name="title" content="masaud ahmod" />
       <meta
         name="description"
-        content="Vivek's Portfolio Website with his past experiences, projects, and resume."
+        content="masaud's Portfolio Website with his past experiences, projects, and resume."
       />
       <meta name="author" content="masaud ahmod (masaudahmod)" />
       <meta
@@ -50,7 +50,7 @@ export default function MetaTags() {
       <meta property="og:title" content="masaud ahmod" />
       <meta
         property="og:description"
-        content="Vivek's Portfolio Website with his past experiences, projects, resume."
+        content="masaud's Portfolio Website with his past experiences, projects, resume."
       />
       <meta property="og:image" content="/meta/meta-social-image.png" />
       <meta name="og:locale" content="en_IN" />
@@ -63,7 +63,7 @@ export default function MetaTags() {
       <meta property="twitter:title" content="masaud ahmod" />
       <meta
         property="twitter:description"
-        content="Vivek's Portfolio Website with his past experiences, projects, resume."
+        content="masaud's Portfolio Website with his past experiences, projects, resume."
       />
       <meta property="twitter:image" content="/meta/meta-social-image.png" />
     </>
