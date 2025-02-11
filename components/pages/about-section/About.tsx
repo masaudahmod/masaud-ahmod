@@ -1,6 +1,7 @@
+import ArrowIcon from "@/components/reusable-com/ArrowIcons";
+import Img from "@/components/reusable-com/Img";
 import React from "react";
-import ArrowIcon from "../reusable-com/ArrowIcons";
-import Img from "../reusable-com/Img";
+
 
 export default function AboutMe() {
   const technologies = [
