@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
+import Link from "next/link";
 export default function Logo(props: { finishedLoading: boolean }) {
   return (
     <>
@@ -16,11 +16,8 @@ export default function Logo(props: { finishedLoading: boolean }) {
         className=" relative h-12 w-10 "
       >
         <Link
-          to="heroSection"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={200}
+          href="/"
+          className="cursor-pointer"
         >
           <motion.span
           initial={{ x: 1 }}
