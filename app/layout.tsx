@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/helper/Cursor";
 import Header from "@/components/Header/Header";
+import ScrollToTop from "@/components/helper/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Header finishedLoading={true}/>
         <Cursor />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );
