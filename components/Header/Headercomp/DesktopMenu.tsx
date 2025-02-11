@@ -5,7 +5,7 @@ import { Link as ReactScrollLink } from "react-scroll";
 
 export default function DesktopMenu(props: { finishedLoading: boolean }) {
   return (
-    <div className="font-mono text-xs md:flex hidden flex-row items-center space-x-8 ">
+    <div className="font-mono  text-xs md:flex hidden flex-row items-center space-x-8 ">
       <motion.div
         initial={{
           y: -40,

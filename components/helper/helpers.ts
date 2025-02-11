@@ -33,6 +33,7 @@ export const fetchProjectsStar = async () => {
       if (project.github_url == html_url) {
         project.stars = stars;
       }
+      console.log(project);
       return project;
     });
   });
