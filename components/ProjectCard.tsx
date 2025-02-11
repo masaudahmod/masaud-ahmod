@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { Button } from "./helper/CustomHtml";

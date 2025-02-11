@@ -45,9 +45,9 @@ const ProjectSection = () => {
 
   return (
     <>
-      <section>
-        <div className="container my-10 sm:my-7">
-          <div className="flex justify-between mb-10 items-center">
+      <section id="projectSection" className="snap-start bg-masaud-dev-primary-black">
+        <div className="container py-12">
+          <div className="flex justify-between my-10 items-center">
             <div className="text-4xl sm:text-5xl font-medium">Projects</div>
             <Button
               data-cursor="true"
@@ -56,7 +56,7 @@ const ProjectSection = () => {
               View all
             </Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-auto auto-rows-fr gap-x-5 gap-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-auto auto-rows-fr gap-x-5 gap-y-5 mb-12">
             {/* {Array.from(length).map((project: ProjectCardProps, i) => (
               <ProjectCard key={i} {...project} />
             ))} */}

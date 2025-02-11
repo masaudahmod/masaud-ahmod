@@ -36,15 +36,15 @@ const Projects: NextPage<Props> = () => {
     setCustomOrderedProjectList([...projectList.sort(descendingSortFunction)]);
   }, [projectList, filterBy]);
 
-//   const extractBadgesSet = () => {
-//     const s = new Set();
-//     projectList.forEach((project) => {
-//       project.badges.forEach((badge) => {
-//         s.add(badge.toLowerCase());
-//       });
-//     });
-//     return Array.from(s);
-//   };
+  //   const extractBadgesSet = () => {
+  //     const s = new Set();
+  //     projectList.forEach((project) => {
+  //       project.badges.forEach((badge) => {
+  //         s.add(badge.toLowerCase());
+  //       });
+  //     });
+  //     return Array.from(s);
+  //   };
 
   const filterByBadge = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
@@ -57,47 +57,49 @@ const Projects: NextPage<Props> = () => {
   };
 
   return (
-    <div className="my-4 sm:my-10">
-      <div className="flex sm:flex-row w-full sm:w-auto flex-col items-center text-sm 2xl:text-base">
-        <div className="flex-1">
-          <span>Filter by: </span>
-          <select
-            className=" bg-v9-secondary-black py-1 px-2 ml-2 rounded border-2 border-opacity-5 outline-none text-v9-light-grey focus:border-v9-yellow"
-            value={filterBy}
-            onChange={(e) => {
-              ReactGA.event({
-                category: "Button.Click",
-                action: "Filter Projects",
-                label: e.target.value,
-              });
-              setFilterBy(e.target.value as TypeFilterBy);
-            }}
-          >
-            <option value={"stars"}>stars</option>
-            <option value={"year"}>year</option>
-            <option value={"priority"}>masaud favorite</option>
-          </select>
+    <section className="py-20">
+      <div className="my-12 sm:my-10">
+        <div className="flex sm:flex-row w-full sm:w-auto flex-col items-center text-sm 2xl:text-base">
+          <div className="flex-1">
+            <span>Filter by: </span>
+            <select
+              className=" bg-masaud-dev-secondary-black py-1 px-2 ml-2 rounded border-2 border-opacity-5 outline-none text-masaud-dev-light-grey focus:border-masaud-dev-yellow"
+              value={filterBy}
+              onChange={(e) => {
+                ReactGA.event({
+                  category: "Button.Click",
+                  action: "Filter Projects",
+                  label: e.target.value,
+                });
+                setFilterBy(e.target.value as TypeFilterBy);
+              }}
+            >
+              <option value={"stars"}>stars</option>
+              <option value={"year"}>year</option>
+              <option value={"priority"}>masaud favorite</option>
+            </select>
+          </div>
+          <div className="sm:ml-4 ml-0 mt-4 sm:mt-0 w-full sm:w-auto sm:flex-1 flex items-center">
+            <span>Search by: </span>
+            <input
+              className=" border border-masaud-dev-light-grey border-opacity-10 bg-masaud-dev-primary-black py-1 px-2 mx-2 rounded flex-1 focus:border-masaud-dev-yellow active:border-masaud-dev-yellow outline-none"
+              type="text"
+              data-cursor-focusable="true"
+              name="search-project"
+              placeholder="React, Python, D3, etc."
+              onChange={filterByBadge}
+            />
+          </div>
         </div>
-        <div className="sm:ml-4 ml-0 mt-4 sm:mt-0 w-full sm:w-auto sm:flex-1 flex items-center">
-          <span>Search by: </span>
-          <input
-            className=" border border-v9-light-grey border-opacity-10 bg-v9-primary-black py-1 px-2 mx-2 rounded flex-1 focus:border-v9-yellow active:border-v9-yellow outline-none"
-            type="text"
-            data-cursor-focusable="true"
-            name="search-project"
-            placeholder="React, Python, D3, etc."
-            onChange={filterByBadge}
-          />
-        </div>
-      </div>
 
-      <Hr />
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-auto auto-rows-fr gap-x-5 gap-y-5">
-        {customOrderedProjectList.map((project: ProjectCardProps, i) => (
-          <ProjectCard key={i} {...project} />
-        ))}
+        <Hr />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-auto auto-rows-fr gap-x-5 gap-y-5">
+          {customOrderedProjectList.map((project: ProjectCardProps, i) => (
+            <ProjectCard key={i} {...project} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
