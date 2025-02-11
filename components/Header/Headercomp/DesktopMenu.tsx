@@ -122,7 +122,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           </span>
         </ReactScrollLink>
       </motion.span>
-      <a href={"/resume.pdf"} target={"_blank"} rel="noreferrer">
+      <a href={"/resume"} target={"_blank"} rel="noreferrer">
         <motion.button data-cursor={true} 
           initial={{
             y: -40,
@@ -137,7 +137,6 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
             duration: props.finishedLoading ? 0 : 1.2,
             delay: props.finishedLoading ? 0 : 10.2,
           }}
-          // onClick={()=>{router.push("/resume.pdf")}}
           className="text-secondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
         >
           Resume
