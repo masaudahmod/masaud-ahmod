@@ -2,8 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 
+interface MobileMenuProps {
+  rotate: boolean;
+  setRotate: (rotate: boolean) => void;
+  setShowElement: (showElement: boolean) => void;
+  ShowElement: boolean;
+}
 
-const MobileMenu = (props) => {
+const MobileMenu = (props: MobileMenuProps) => {
   const closeMenu = () => {
     props.setRotate(!props.rotate);
     props.setShowElement(!props.ShowElement);

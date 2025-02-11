@@ -1,19 +1,19 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Logo from "./Headercomp/Logo";
 import DesktopMenu from "./Headercomp/DesktopMenu";
 import IconMenu from "./Headercomp/IconMenu";
 import MobileMenu from "./Headercomp/MobileMenu";
 import { motion } from "framer-motion";
-import AppContext from "../AppContextFolder/AppContext";
+// import AppContext from "../AppContextFolder/AppContext";
 
 const Header = ({ finishedLoading }: { finishedLoading: boolean }) => {
   const RefNavBar = useRef<HTMLDivElement | null>(null);
   const [ShowElement, setShowElement] = useState(false);
   const [rotate, setRotate] = useState(false);
-  const context = useContext(AppContext);
-  const scrollSizeY = useRef(0);
+  // const context = useContext(AppContext);
+  // const scrollSizeY = useRef(0);
 
   // useEffect(() => {
   //   const handleScroll = () => {

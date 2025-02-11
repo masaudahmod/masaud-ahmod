@@ -30,7 +30,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 01.{" "}
-          <span className="text-white hover:cursor-pointer hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary duration-300">
             About
           </span>
         </ReactScrollLink>
@@ -59,7 +59,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 02.{" "}
-          <span className="text-white  hover:cursor-pointer hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary duration-300">
             Experience
           </span>
         </ReactScrollLink>
@@ -88,7 +88,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 03.{" "}
-          <span className="text-white  hover:cursor-pointer hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary duration-300">
             Work
           </span>
         </ReactScrollLink>
@@ -117,7 +117,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 04.{" "}
-          <span className="text-white  hover:cursor-pointer hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary duration-300">
             Contact
           </span>
         </ReactScrollLink>
@@ -138,7 +138,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
             delay: props.finishedLoading ? 0 : 10.2,
           }}
           // onClick={()=>{router.push("/resume.pdf")}}
-          className="text-AAsecondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
+          className="text-secondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
         >
           Resume
         </motion.button>
