@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-scroll";
 export default function Logo(props: { finishedLoading: boolean }) {
   return (
     <>
       <motion.div
+      
         initial={{ y: 0, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
@@ -13,7 +15,14 @@ export default function Logo(props: { finishedLoading: boolean }) {
         }}
         className=" relative h-12 w-10 "
       >
-        <motion.span
+        <Link
+          to="heroSection"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={200}
+        >
+          <motion.span
           initial={{ x: 1 }}
           className="absolute h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary"
         >
@@ -26,6 +35,7 @@ export default function Logo(props: { finishedLoading: boolean }) {
         <motion.div animate={{ rotate: -30, y: 27, x: 19 }} className="h-1 w-6 rounded bg-AAsecondary"></motion.div>
         <motion.div animate={{ rotate: 30, x: 19, y: -10 }} className="h-1 w-6 rounded bg-AAsecondary"></motion.div>
         <motion.div animate={{ rotate: 90, x: 28, y: 2 }} className="h-1 w-6 rounded bg-AAsecondary"></motion.div>
+        </Link>
       </motion.div>
     </>
   );

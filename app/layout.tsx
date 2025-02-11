@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header finishedLoading={true} sectionsRef={null}/>
+        <Header finishedLoading={true}/>
         <Cursor />
         {children}
       </body>
