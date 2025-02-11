@@ -4,6 +4,7 @@ import "./globals.css";
 import Cursor from "@/components/helper/Cursor";
 import Header from "@/components/Header/Header";
 import ScrollToTop from "@/components/helper/ScrollToTop";
+import ScrollProgress from "@/components/helper/ScrollProgress";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <Header finishedLoading={true}/>
         <Cursor />
+        <ScrollProgress />
         {children}
         <ScrollToTop />
       </body>

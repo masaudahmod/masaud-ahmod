@@ -117,14 +117,16 @@ export default function AboutMe() {
           </div>
           {/* // ? Image in Desktop and Tablet */}
           <div className="group relative lg:w-96 lg:h-96 md:w-72 md:h-72 md:block hidden ">
-            <div data-cursor={true}
+            <div
               className="group-hover:translate-x-3 group-hover:translate-y-3
                duration-300 absolute w-5/6 h-5/6 border-2 border-AAsecondary translate-x-5 
                translate-y-5 rounded"
             ></div>
 
             <div data-cursor={true} className="absolute w-5/6 h-5/6 rounded overflow-hidden">
-              <div  className="absolute w-full h-full group-hover:opacity-0 bg-AAsecondary opacity-10 duration-300 rounded overflow-hidden"></div>
+              <div data-cursor={true} className="absolute w-full h-full group-hover:opacity-0 bg-AAsecondary opacity-10 duration-300 rounded overflow-hidden">
+
+              </div>
               <Img
                 src={"https://i.ibb.co.com/4ZMqPQ2/me.png"}
                 className={"object-contain rounded-lg"}
