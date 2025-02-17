@@ -8,7 +8,7 @@ import React, { useContext, useEffect } from "react";
 import ReactGA from "react-ga4";
 
 const ProjectSection = () => {
-  const { projectList, setProjectList } = useContext(ProjectListContext);
+  // const { projectList, setProjectList } = useContext(ProjectListContext);
 
   // const [top6Projects, setTop6Projects] = useState<ProjectCardProps[]>([]);
   const dummyProject: ProjectCardProps = {
@@ -40,8 +40,7 @@ const ProjectSection = () => {
     // fetchProjectsStar().then((updatedProjectsListWithStars) => {
     //   setProjectList([...updatedProjectsListWithStars]);
     // });
-  }, [setProjectList]);
-  console.log(projectList);
+  }, []);
 
   return (
     <>

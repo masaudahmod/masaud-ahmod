@@ -81,7 +81,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
         className="text-AAsecondary"
       >
         <ReactScrollLink
-          to="SomethingIveBuiltSection"
+          to="projectSection"
           spy={true}
           smooth={true}
           offset={-100}
@@ -90,6 +90,35 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           &gt; 03.{" "}
           <span className="text-white hover:text-AAsecondary duration-300">
             Work
+          </span>
+        </ReactScrollLink>
+      </motion.div>
+      <motion.div
+        initial={{
+          y: -40,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
+        transition={{
+          type: "spring",
+          duration: props.finishedLoading ? 0 : 1.2,
+          delay: props.finishedLoading ? 0 : 9.8,
+        }}
+        className="text-AAsecondary"
+      >
+        <ReactScrollLink
+          to="blogSection"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={200}
+        >
+          &gt; 03.{" "}
+          <span className="text-white hover:text-AAsecondary duration-300">
+            Blogs
           </span>
         </ReactScrollLink>
       </motion.div>
