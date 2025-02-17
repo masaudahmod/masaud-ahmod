@@ -47,7 +47,7 @@ const ProjectSection = () => {
       <section id="projectSection" className="snap-start bg-masaud-dev-primary-black">
         <div className="container py-12">
           <div className="flex justify-between my-10 items-center">
-            <div className="text-4xl sm:text-5xl font-medium">Projects</div>
+            <div data-cursor="true"  className="px-4 py-2 text-4xl sm:text-5xl font-bold text-AAsecondary">Projects</div>
             <Button
               data-cursor="true"
               onClick={() => (window.location.href = "/projects")}

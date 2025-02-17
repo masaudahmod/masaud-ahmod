@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type BlogCardProps = {
@@ -10,9 +12,9 @@ type BlogCardProps = {
 
 const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags, link, image }) => {
   return (
-    <div className="bg-gray-900 text-white p-5 rounded-2xl shadow-lg w-full max-w-lg">
-      <img src={image} alt={title} className="w-full h-40 object-cover rounded-lg mb-3" />
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <div className="bg-masaud-dev-secondary-black text-white p-5 rounded-2xl shadow-lg w-full max-w-lg">
+      <Image width={300} height={600} src={image} alt={title} className="w-full h-80 object-cover rounded-lg mb-3" />
+      <h3 className="text-xl font-semibold mb-2 cursor-none hover:text-AAsecondary transition-all duration-300">{title}</h3>
       <p className="text-gray-300 mb-3">{description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
         {tags.map((tag, index) => (
@@ -21,14 +23,15 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, tags, link, ima
           </span>
         ))}
       </div>
-      <a
+      <Link
         href={link}
         target="_blank"
+        data-cursor="true"
         rel="noopener noreferrer"
-        className="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+        className="inline-block cursor-none bg-AAsecondary/50 text-white px-4 py-2 rounded-lg hover:bg-AAsecondary/80 hover:text-AAprimary transition"
       >
         Read More
-      </a>
+      </Link>
     </div>
   );
 };

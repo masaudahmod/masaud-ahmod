@@ -1,4 +1,5 @@
 import AboutMe from "@/components/pages/about-section/About";
+import BlogSection from "@/components/pages/blog-section/BlogSection";
 import ContactSection from "@/components/pages/contact-section/ContactSection";
 import EducationSection from "@/components/pages/education-section/EducationSection";
 import HeroSection from "@/components/pages/hero-section/HeroSection";
@@ -11,6 +12,7 @@ export default function Home() {
       <AboutMe />
       <EducationSection />
       <ProjectSection />
+      <BlogSection />
       <ContactSection />
     </>
   );
