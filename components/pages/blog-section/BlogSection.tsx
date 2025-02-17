@@ -1,6 +1,4 @@
 import BlogCard from "@/components/BlogCard";
-import React from "react";
-import blogImage from "@/public/window.svg";
 
 export default function BlogSection() {
   return (
@@ -22,12 +20,21 @@ export default function BlogSection() {
               <BlogCard
                 key={index}
                 title={`Blog ${index + 1}`}
+                tagline={`Description for blog ${index + 1}`}
+                year={2025}
+                category="Web Project"
+              />
+            ))}
+            {/* {Array.from({ length: 3 }).map((_, index) => (
+              <BlogCard
+                key={index}
+                title={`Blog ${index + 1}`}
                 description={`Description for blog ${index + 1}`}
                 tags={["Tag 1", "Tag 2", "Tag 3"]}
                 link={`https://example.com/blog/${index + 1}`}
                 image={blogImage}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </section>
