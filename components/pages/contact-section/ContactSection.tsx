@@ -22,7 +22,8 @@ const ContactSection = () => {
     <section id="contactSection" className=" bg-masaud-dev-purple/20">
       <div className="container p-2 py-10 lg:py-24">
         <div className="flex justify-start my-5 lg:py-8">
-          <div className="flex items-center">
+          <div className="flex justify-center w-full items-center">
+            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
             <span
               data-cursor="true"
               className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md"

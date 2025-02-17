@@ -10,8 +10,8 @@ export const personalData = {
   github: "https://github.com/masaudahmod",
   facebook: "https://www.facebook.com/masaudahmod/",
   linkedIn: "https://www.linkedin.com/in/masaudahmod/",
-  twitter: "https://twitter.com/masaudahmod",
-  // leetcode: "https://leetcode.com/masaudahmod/",
+  twitterX: "https://x.com/masaudahmod/",
+  leetcode: "https://leetcode.com/u/masaudahmod/",
   devUsername: "masaudahmod",
   resume:
     "https://drive.google.com/file/d/1o4Jc2e04bp2SOezZoYO_SW2BGQDpnKFK/view?usp=sharing",

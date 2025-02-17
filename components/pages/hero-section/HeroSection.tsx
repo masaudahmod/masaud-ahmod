@@ -3,9 +3,11 @@
 import { personalData } from "@/utils/data/personal-data";
 import Link from "next/link";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
+import { SiLeetcode } from "react-icons/si";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 function HeroSection() {
   return (
@@ -15,7 +17,7 @@ function HeroSection() {
           <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
             Greetings! <br />
             This is{" "}
-            <span className=" text-pink-500">{personalData.name} ,</span>
+            <span className=" text-pink-500">{personalData.name},</span>
             {/* {` , A Professional `} */}
             <br /> A Passionate
             <span className=" text-[#16f2b3]"> {personalData.designation}</span>
@@ -23,39 +25,44 @@ function HeroSection() {
 
           <div className="my-12 flex items-center gap-5">
             <Link
+              data-cursor={true}
               href={personalData.github}
               target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
+              className="transition-all cursor-none text-AAsecondary hover:scale-125 duration-300"
             >
               <BsGithub size={30} />
             </Link>
             <Link
+              data-cursor={true}
               href={personalData.linkedIn}
               target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
+              className="transition-all cursor-none text-AAsecondary hover:scale-125 duration-300"
             >
               <BsLinkedin size={30} />
             </Link>
             <Link
+              data-cursor={true}
               href={personalData.facebook}
               target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
+              className="transition-all cursor-none text-AAsecondary hover:scale-125 duration-300"
             >
               <FaFacebook size={30} />
             </Link>
-            {/* <Link
+            <Link
+            data-cursor={true}
               href={personalData.leetcode}
               target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
+              className="transition-all cursor-none text-AAsecondary hover:scale-125 duration-300"
             >
               <SiLeetcode size={30} />
-            </Link> */}
+            </Link>
             <Link
-              href={personalData.twitter}
+              data-cursor={true}
+              href={personalData.twitterX}
               target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
+              className="transition-all cursor-none text-AAsecondary hover:scale-125 duration-300"
             >
-              <FaTwitterSquare size={30} />
+              <FaSquareXTwitter size={30} />
             </Link>
           </div>
 
