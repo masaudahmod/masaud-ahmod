@@ -2,7 +2,6 @@ import ArrowIcon from "@/components/reusable-com/ArrowIcons";
 import Img from "@/components/reusable-com/Img";
 import React from "react";
 
-
 export default function AboutMe() {
   const technologies = [
     ["Nextjs/React", "TypeScript/JavaScript", "Tailwind CSS", "Vite Dev tool"],
@@ -19,17 +18,17 @@ export default function AboutMe() {
         md:w-[700px] lg:w-[900px] "
       >
         <div className="flex flex-row items-center ">
-          <div className="flex flex-row  items-center mr-4">
-            <ArrowIcon
+          <div className="flex flex-row items-center mr-4">
+            {/* <ArrowIcon
               className={
                 "flex-none h-4 md:h-6 w-4 md:w-5 translate-y-[0.5px] text-AAsecondary"
               }
-            />
-            <span className="text-AAsecondary font-Header text-sm  sm:text-xl">
+            /> */}
+            {/* <span className="text-AAsecondary font-Header text-sm  sm:text-xl">
               {" "}
               01.
-            </span>
-            <span className="flex-none text-gray-200 opacity-85 font-bold tracking-wider text-lg sm:text-2xl pl-4">
+            </span> */}
+            <span className="flex-none text-gray-200 opacity-85 font-bold tracking-wider inline text-lg sm:text-2xl pl-4">
               About Me
             </span>
           </div>
@@ -124,10 +123,14 @@ export default function AboutMe() {
                translate-y-5 rounded"
             ></div>
 
-            <div data-cursor={true} className="absolute w-5/6 h-5/6 rounded overflow-hidden">
-              <div data-cursor={true} className="absolute w-full h-full group-hover:opacity-0 bg-AAsecondary opacity-10 duration-300 rounded overflow-hidden">
-
-              </div>
+            <div
+              data-cursor={true}
+              className="absolute w-5/6 h-5/6 rounded overflow-hidden"
+            >
+              <div
+                data-cursor={true}
+                className="absolute w-full h-full group-hover:opacity-0 bg-AAsecondary opacity-10 duration-300 rounded overflow-hidden"
+              ></div>
               <Img
                 src={"https://i.ibb.co.com/4ZMqPQ2/me.png"}
                 className={"object-contain rounded-lg"}
