@@ -60,7 +60,7 @@ const ProjectSection = () => {
               <ProjectCard key={i} {...project} />
             ))} */}
 
-            {Array.from({ length: 6 }).map((ProjectCardProps, i) => (
+            {Array.from({ length: 3 }).map((ProjectCardProps, i) => (
               <ProjectCard key={i} {...dummyProject} />
             ))}
           </div>

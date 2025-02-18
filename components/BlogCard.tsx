@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import { Button } from "./helper/CustomHtml";
-import ReactGA from "react-ga4";
+// import ReactGA from "react-ga4";
 
 export type BlogCardProps = {
+  id: number,
   title: string;
   tagline: string;
   year: number;
@@ -12,21 +15,23 @@ export type BlogCardProps = {
 };
 const BlogCard = (props: BlogCardProps) => {
   return (
-    <div className=" flex flex-col justify-between py-6 px-6 border rounded-xl border-opacity-10 bg-masaud-dev-secondary-black transition-colors">
-      <div>
+    <div className="relative flex flex-col justify-between py-6 px-6 border rounded-xl border-opacity-10 bg-masaud-dev-secondary-black transition-colors">
+      <div className="absolute top-6 right-0 font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey px-2 py-1 pr-7 rounded-l-xl ">
+        {props.year}
+      </div>
+      <div className="w-full h-48 overflow-hidden rounded-lg object-cover bg-masaud-dev-dark-grey">
         <Image
+          src={props.image}
           width={500}
           height={300}
-          className="rounded-md"
-          src={props.image}
+          className="rounded-md hover:scale-105 h-full transition-all duration-300"
           alt={props.title}
         />
       </div>
       <div>
-        <div className="flex items-center justify-between">
-          <div className="text-masaud-dev-pink">{props.year}</div>
+        <div className="cursor-none transition-all duration-300 hover:text-AAsecondary text-lg 2xl:text-xl mt-2">
+          {props.title}
         </div>
-        <div className=" text-lg 2xl:text-xl mt-2">{props.title}</div>
         <div className=" text-masaud-dev-light-grey font-light mt-2">
           {props.tagline}
         </div>
@@ -44,8 +49,8 @@ const BlogCard = (props: BlogCardProps) => {
             className="mx-1 flex-1"
             // id={`view-project-button-${cardId}`}
           >
-            <span data-cursor="true" className="mr-2">
-              View Project
+            <span data-cursor="true" data-cursor-focusable="true" onClick={()=> window.location.href = `/blogs/:${props.id}`} className="mr-2">
+              View Blog
             </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
