@@ -3,6 +3,7 @@ import BlogCard from "@/components/BlogCard";
 import blogImage1 from "../../../public/next.svg";
 
 export default function BlogSection() {
+  
   return (
     <>
       <section id="projectSection" className="snap-start bg-AAsecondary/5">

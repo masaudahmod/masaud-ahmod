@@ -1,4 +1,11 @@
+"use client"
+
 export default function page() {
+//     const router = useRouter();
+
+//   const handleNavigate = (id: number) => {
+//     router.push(`/blogs/${id}`);
+//   };
   return (
     <>
       <div className="flex justify-center min-h-screen text-2xl capitalize items-center">

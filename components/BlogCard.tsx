@@ -6,7 +6,7 @@ import { Button } from "./helper/CustomHtml";
 // import ReactGA from "react-ga4";
 
 export type BlogCardProps = {
-  id: number,
+  id: number;
   title: string;
   tagline: string;
   year: number;
@@ -14,6 +14,11 @@ export type BlogCardProps = {
   image: string;
 };
 const BlogCard = (props: BlogCardProps) => {
+  // const router = useRouter();
+
+  // const handleNavigate = (id: number) => {
+  //   router.push(`/blogs/${id}`);
+  // };
   return (
     <div className="relative flex flex-col justify-between py-6 px-6 border rounded-xl border-opacity-10 bg-masaud-dev-secondary-black transition-colors">
       <div className="absolute top-6 right-0 font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey px-2 py-1 pr-7 rounded-l-xl ">
@@ -49,7 +54,13 @@ const BlogCard = (props: BlogCardProps) => {
             className="mx-1 flex-1"
             // id={`view-project-button-${cardId}`}
           >
-            <span data-cursor="true" data-cursor-focusable="true" onClick={()=> window.location.href = `/blogs/:${props.id}`} className="mr-2">
+            <span
+              data-cursor="true"
+              data-cursor-focusable="true"
+              onClick={() => (window.location.href = `/blogs/:${props.id}`)}
+              // onClick={handleNavigate(props.id)}
+              className="mr-2"
+            >
               View Blog
             </span>
             <svg
