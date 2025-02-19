@@ -1,10 +1,10 @@
 "use client";
 
-import { ProjectListContext } from "@/components/context";
+// import { ProjectListContext } from "@/components/context";
 import { Button } from "@/components/helper/CustomHtml";
 // import { fetchProjectsStar } from "@/components/helper/helpers";
 import ProjectCard, { ProjectCardProps } from "@/components/ProjectCard";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import ReactGA from "react-ga4";
 
 const ProjectSection = () => {

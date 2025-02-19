@@ -11,6 +11,7 @@ export type BlogCardProps = {
   tagline: string;
   year: number;
   category: string;
+  link : string;
   image: string;
 };
 const BlogCard = (props: BlogCardProps) => {
@@ -21,7 +22,10 @@ const BlogCard = (props: BlogCardProps) => {
   // };
   return (
     <div className="relative blog-card flex flex-col justify-between py-6 px-6 border overflow-hidden rounded-xl border-opacity-10 bg-masaud-dev-secondary-black transition-colors">
-      <div className="blog-card-yeartags ">
+      <div className="block md:hidden absolute top-6 right-0 font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey/70 px-2 py-1 pr-7 rounded-l-xl  z-50">
+        {props.year}
+      </div>
+      <div className="blog-card-yeartags z-50">
         {props.year}
       </div>
       <div className="w-full h-48 overflow-hidden rounded-lg object-cover bg-masaud-dev-dark-grey">
@@ -52,12 +56,13 @@ const BlogCard = (props: BlogCardProps) => {
             //   });
             // }}
             className="mx-1 flex-1"
+            onClick={() => window.open(props.link, "_blank")}
             // id={`view-project-button-${cardId}`}
           >
             <span
               data-cursor="true"
               data-cursor-focusable="true"
-              onClick={() => (window.location.href = `/blogs/:${props.id}`)}
+              // onClick={() => (window.location.href = `/blogs/:${props.id}`)}
               // onClick={handleNavigate(props.id)}
               className="mr-2"
             >

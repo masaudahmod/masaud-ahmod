@@ -1,10 +1,9 @@
 "use client"
 import BlogCard from "@/components/BlogCard";
-import blogImage1 from "../../../public/next.svg";
 import blogs from "@/utils/data/blogs.json";
 
 export default function BlogSection() {
-  console.log(blogs);
+
   return (
     <>
       <section id="projectSection" className="snap-start bg-AAsecondary/5">
@@ -49,6 +48,7 @@ export default function BlogSection() {
                 tagline={blog.tagline}
                 year={blog.year}
                 category={blog.category}
+                link={blog.link}
               />
             ))}
           </div>
