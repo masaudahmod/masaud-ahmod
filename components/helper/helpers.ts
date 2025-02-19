@@ -57,6 +57,7 @@ export const badgeImage:
   "docker": "https://img.shields.io/badge/docker-%230db7ed.svg?style=flat-square&logo=docker&logoColor=white",
   "aws": "https://img.shields.io/badge/AWS-%23FF9900.svg?style=flat-square&logo=amazon-aws&logoColor=white",
   "next.js": "https://img.shields.io/badge/next.js-%23000000.svg?style=flat-square&logo=nextdotjs&logoColor=white",
+  "vite": "https://img.shields.io/badge/Vite-%23007ACC.svg?style=flat-square&logo=vite&logoColor=white",
   "tailwind css": "https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white",
   "vercel": "https://img.shields.io/badge/vercel-%23000000.svg?style=flat-square&logo=vercel&logoColor=white",
   "tensorflow": "https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat-square&logo=TensorFlow&logoColor=white",
@@ -81,8 +82,14 @@ export const badgeImage:
   "typescript": "https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white",
   "vscode": "https://img.shields.io/badge/Visual_Studio_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white",
   "markdown": "https://img.shields.io/badge/markdown-%23000000.svg?style=flat-square&logo=markdown&logoColor=white",
+  "github": "https://img.shields.io/badge/GitHub-%23121011.svg?style=flat-square&logo=github&logoColor=white",
+  "git": "https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white",
+  "HTML": "https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white",
   "css": "https://img.shields.io/badge/CSS-239120?style=flat-square&logo=css3&logoColor=white",
   "vscode extension": "https://img.shields.io/badge/VS_Code_Extension-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white",
+  "three.js": "https://img.shields.io/badge/three.js-%23000000.svg?style=flat-square&logo=three.js&logoColor=white",
+  "HTML5": "https://img.shields.io/badge/HTML5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white",
+  "HTML5 Canvas": "https://img.shields.io/badge/HTML5_Canvas-%23F7DF1E.svg?style=flat-square&logo=html5&logoColor=white",
 }
 
 export const fetchLikes = async () => {

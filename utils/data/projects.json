@@ -1,76 +1,67 @@
 [
   {
-    "title": "Personal Portfolio",
+    "title": "Personal Portfolio Site By Masaud Ahmod",
     "tagline": "A personal portfolio site to showcase my projects, skills, and experience.",
     "year": 2023,
     "badges": [
-      "Next.js",
-      "Typescript",
+      "vite",
       "Javascript",
       "Tailwind CSS",
       "React",
+      "Three.js",
       "Vercel"
     ],
-    "github_url": "https://github.com/masaudahmod/basic-personal-portfolio",
-    "demo_url": "",
+    "github_url": "https://github.com/masaudahmod/masaud-ahmod-00",
+    "demo_url": "https://masaudahmod.vercel.app/",
     "stars": 0,
     "priority": 2,
-    "category": "Web Project"
+    "category": "Web project"
   },
   {
-    "title": "Visualizing Fabric of Ohio City",
-    "tagline": "A Data-visulization project to highlight volunteers’ characteristics, social activities, and predominant business base.",
+    "title": "Restaurant Landing Page with HTML, CSS, and JS",
+    "tagline": "A restaurant landing page with a modern design and animations. Built with HTML, CSS, and JavaScript, and hosted on GitHub Pages.",
     "year": 2023,
     "badges": [
-      "D3",
       "Javascript",
-      "Material UI",
-      "React",
-      "Flask",
-      "Azure",
-      "Postgre"
+      "CSS",
+      "Github",
+      "Vscode Extension"
     ],
-    "github_url": "https://github.com/masaudahmod/CSE-578-Project-Frontend",
-    "demo_url": "https://cse-578-project-frontend.vercel.app",
+    "github_url": "https://github.com/masaudahmod/restaurant-landing",
+    "demo_url": "https://masaudahmod.github.io/restaurant-landing/",
     "stars": 0,
     "priority": 5,
     "category": "Web Project"
   },
   {
-    "title": "VScode CSS Compatibility",
-    "tagline": "A VS Code extension to check which CSS sytaxes are compatible or supported with all browsers and their versions.",
-    "year": 2024,
-    "badges": [
-      "Vscode Extension",
-      "Typescript",
-      "Javascript",
-      "CSS",
-      "Markdown"
-    ],
-    "github_url": "https://github.com/masaudahmod/vscode-css-compatibility",
-    "demo_url": "https://marketplace.visualstudio.com/items?itemName=masaudahmod.vscode-css-compatibility",
+    "title": "🌟 My Open-Source JavaScript Project",
+    "tagline": "his project is packed with useful JavaScript code snippets that anyone can use and contribute to. Whether you're a beginner or an expert.",
+    "year": 2025,
+    "badges": ["Vscode Extension", "Javascript", "CSS", "Markdown"],
+    "github_url": "https://github.com/masaudahmod/JavaScript-projects",
+    "demo_url": "",
     "stars": 0,
     "priority": 3,
-    "category": "VS Code Extension"
+    "category": "JS Open Source Project"
   },
   {
-    "title": "Code-Connect: Interview Tool",
-    "tagline": "A platform for interviews with features of video meetings, an online language compiler, and a whiteboard.",
-    "year": 2022,
-    "badges": ["React", "Chakra UI", "Express", "MongoDB", "Docker", "AWS"],
-    "github_url": "https://github.com/masaudahmod/CodeConnect-frontend",
-    "demo_url": "https://codeconnect.vercel.app/",
+    "title": "BookStore Project With MERN Stack",
+    "tagline": "A full-stack MERN project with features of user authentication, CRUD operations, and a shopping cart.",
+    "year": 2024,
+    "badges": ["React", "Javascript", "Vercel", "Express", "MongoDB", "Tailwind CSS"],
+    "github_url": "https://github.com/masaudahmod/BookStore-MERN",
+    "demo_url": "",
     "stars": 0,
     "priority": 4,
-    "category": "Web Project"
+    "category": "Mern Project"
   },
   {
-    "title": "Web Simulation of UbuntuOS",
-    "tagline": "A virtual simulation of Ubuntu 20.04 operating system on web.",
-    "year": 2021,
-    "badges": ["Next.js", "Javascript", "Tailwind CSS", "Vercel"],
-    "github_url": "https://github.com/masaudahmod/masaudahmod.github.io",
-    "demo_url": "https://masaudahmod.github.io",
+    "title": "Landing Page Agency with Scss",
+    "tagline": "A landing page for a digital agency with a modern design and animations.",
+    "year": 2023,
+    "badges": ["HTML5", "CSS", "Scss", "Github"],
+    "github_url": "https://github.com/masaudahmod/landing-agency-with-scss",
+    "demo_url": "https://masaudahmod.github.io/landing-agency-with-scss/",
     "stars": 0,
     "priority": 6,
     "category": "Web Project"
