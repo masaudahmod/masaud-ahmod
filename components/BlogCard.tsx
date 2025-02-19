@@ -20,8 +20,8 @@ const BlogCard = (props: BlogCardProps) => {
   //   router.push(`/blogs/${id}`);
   // };
   return (
-    <div className="relative flex flex-col justify-between py-6 px-6 border rounded-xl border-opacity-10 bg-masaud-dev-secondary-black transition-colors">
-      <div className="absolute top-6 right-0 font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey px-2 py-1 pr-7 rounded-l-xl ">
+    <div className="relative blog-card flex flex-col justify-between py-6 px-6 border overflow-hidden rounded-xl border-opacity-10 bg-masaud-dev-secondary-black transition-colors">
+      <div className="blog-card-yeartags ">
         {props.year}
       </div>
       <div className="w-full h-48 overflow-hidden rounded-lg object-cover bg-masaud-dev-dark-grey">
@@ -29,7 +29,7 @@ const BlogCard = (props: BlogCardProps) => {
           src={props.image}
           width={500}
           height={300}
-          className="rounded-md hover:scale-105 h-full transition-all duration-300"
+          className="blog-cardImage"
           alt={props.title}
         />
       </div>

@@ -1,9 +1,10 @@
 "use client"
 import BlogCard from "@/components/BlogCard";
 import blogImage1 from "../../../public/next.svg";
+import blogs from "@/utils/data/blogs.json";
 
 export default function BlogSection() {
-  
+  console.log(blogs);
   return (
     <>
       <section id="projectSection" className="snap-start bg-AAsecondary/5">
@@ -28,7 +29,7 @@ export default function BlogSection() {
             </Button> */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-auto auto-rows-fr gap-x-5 gap-y-5 mb-12">
-            {Array.from({ length: 3 }).map((_, index) => (
+            {/* {Array.from({ length: 3 }).map((_, index) => (
               <BlogCard
                 id={2}
                 key={index}
@@ -38,17 +39,18 @@ export default function BlogSection() {
                 year={2025}
                 category="Web Project"
               />
-            ))}
-            {/* {Array.from({ length: 3 }).map((_, index) => (
-              <BlogCard
-                key={index}
-                title={`Blog ${index + 1}`}
-                description={`Description for blog ${index + 1}`}
-                tags={["Tag 1", "Tag 2", "Tag 3"]}
-                link={`https://example.com/blog/${index + 1}`}
-                image={blogImage}
-              />
             ))} */}
+            {blogs.map((blog) => (
+              <BlogCard
+                id={blog.id}
+                key={blog.id}
+                image={blog.image}
+                title={blog.title}
+                tagline={blog.tagline}
+                year={blog.year}
+                category={blog.category}
+              />
+            ))}
           </div>
         </div>
       </section>

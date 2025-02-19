@@ -25,20 +25,31 @@ body {
 .theme-container {
   @apply max-w-[1400px] mx-auto px-2;
 }
-input{
+input {
   cursor: none;
 }
-textarea{
+textarea {
   cursor: none;
 }
-@layer base{
-  :root{
-    cursor: none
+@layer base {
+  :root {
+    cursor: none;
   }
-  .container{
-    @apply max-w-[1400px] mx-auto px-2
+  .container {
+    @apply max-w-[1400px] mx-auto px-2;
   }
-};
+
+  /* blogs */
+  .blog-card:hover .blog-card-yeartags {
+    @apply -right-0;
+  }
+  .blog-card-yeartags {
+    @apply absolute top-6 -right-full font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey/70 px-2 py-1 pr-7 rounded-l-xl;
+  }
+  .blog-cardImage{
+    @apply rounded-md hover:scale-125 h-full transition-all duration-300
+  }
+}
 /* body {
   color: rgb(var(--foreground-rgb));
   background-color: #0d1224;
