@@ -1,49 +1,11 @@
 "use client";
 
-// import { ProjectListContext } from "@/components/context";
 import { Button } from "@/components/helper/CustomHtml";
-// import { fetchProjectsStar } from "@/components/helper/helpers";
 import ProjectCard, { ProjectCardProps } from "@/components/ProjectCard";
-import React, { useEffect } from "react";
-import ReactGA from "react-ga4";
+import React from "react";
 import Projects from "@/utils/data/projects.json";
 
 const ProjectSection = () => {
-  // const { projectList, setProjectList } = useContext(ProjectListContext);
-console.log(Projects)
-  // const [top6Projects, setTop6Projects] = useState<ProjectCardProps[]>([]);
-
-  // const dummyProject: ProjectCardProps = {
-  //   title: "Chat App In AI Integration",
-  //   tagline:
-  //     "Chat App with Ai Integration Where you can chat in Making a Project with your friends and family. It also has a video call feature.",
-  //   year: 2023,
-  //   badges: [
-  //     "D3",
-  //     "Javascript",
-  //     "Material UI",
-  //     "React",
-  //   ],
-  //   github_url: "https://github.com/masaudahmod/",
-  //   demo_url: "masaudahmod.vercel.app",
-  //   stars: 0,
-  //   priority: 5,
-  //   category: "Web Project",
-  // };
-  
-  // useEffect(() => {
-  //   setTop6Projects(
-  //     projectList.sort((a, b) => b.priority - a.priority).slice(0, 6)
-  //   );
-  // }, [projectList]);
-
-  useEffect(() => {
-    // google analytics
-    ReactGA.send({ hitType: "pageview", page: "/", title: "Home" });
-    // fetchProjectsStar().then((updatedProjectsListWithStars) => {
-    //   setProjectList([...updatedProjectsListWithStars]);
-    // });
-  }, []);
 
   return (
     <>
@@ -59,13 +21,6 @@ console.log(Projects)
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-auto auto-rows-fr gap-x-5 gap-y-5 mb-12">
-            {/* {Array.from(length).map((project: ProjectCardProps, i) => (
-              <ProjectCard key={i} {...project} />
-            ))} */}
-
-            {/* {Array.from({ length: 3 }).map((ProjectCardProps, i) => (
-              <ProjectCard key={i} {...dummyProject} />
-            ))} */}
             {Projects.map((project: ProjectCardProps, i) => (
               <ProjectCard key={i} {...project} />
             ))}

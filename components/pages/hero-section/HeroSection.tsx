@@ -1,4 +1,4 @@
-// @flow strict
+"use server";
 
 import { personalData } from "@/utils/data/personal-data";
 import Link from "next/link";
@@ -83,6 +83,7 @@ function HeroSection() {
             <Link
               data-cursor={true}
               href={personalData.resume}
+              target="_blank"
               className="bg-gradient-to-r z-50 to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
             >
               <button

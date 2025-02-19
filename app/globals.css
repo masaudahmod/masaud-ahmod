@@ -40,6 +40,9 @@ textarea {
   }
 
   /* blogs */
+  .blog-card:hover .blog-cardImage {
+    @apply scale-125;
+  }
   .blog-card:hover .blog-card-yeartags {
     @apply -right-0;
   }
@@ -47,7 +50,7 @@ textarea {
     @apply absolute top-6 -right-full font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey/70 px-2 py-1 pr-7 rounded-l-xl;
   }
   .blog-cardImage{
-    @apply rounded-md hover:scale-125 h-full transition-all duration-300
+    @apply rounded-md h-full transition-all duration-300
   }
 }
 /* body {
