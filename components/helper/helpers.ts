@@ -88,8 +88,6 @@ export const badgeImage:
   "css": "https://img.shields.io/badge/CSS-239120?style=flat-square&logo=css3&logoColor=white",
   "vscode extension": "https://img.shields.io/badge/VS_Code_Extension-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white",
   "three.js": "https://img.shields.io/badge/three.js-%23000000.svg?style=flat-square&logo=three.js&logoColor=white",
-  "HTML5": "https://img.shields.io/badge/HTML5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white",
-  "HTML5 Canvas": "https://img.shields.io/badge/HTML5_Canvas-%23F7DF1E.svg?style=flat-square&logo=html5&logoColor=white",
 }
 
 export const fetchLikes = async () => {
