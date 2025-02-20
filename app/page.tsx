@@ -6,6 +6,7 @@ import HeroSection from "@/components/pages/hero-section/HeroSection";
 import ProjectSection from "@/components/pages/project-section/ProjectSection";
 
 export default function Home() {
+  
   return (
     <>
       <HeroSection />
