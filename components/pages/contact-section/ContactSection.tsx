@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import AnimationLottie from "@/components/helper/AnimationLottie";
 import contactLottie from "@/utils/animation/contact-lottie.json";
 import { Button } from "@/components/helper/CustomHtml";
+import { useState } from "react";
 
 const ContactSection = () => {
   const {
@@ -12,8 +13,30 @@ const ContactSection = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const [status, setStatus] = useState<string | null>(null);
 
-  const onSubmit = (data: object) => {
+  const onSubmit = async (data: object) => {
+    setStatus("Sending...");
+    try {
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setStatus("Email sent successfully!");
+        reset();
+      } else {
+        // setStatus("Failed to send email");
+        setStatus(result.message);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
     console.log("Form Data:", data);
     reset();
   };
@@ -103,8 +126,13 @@ const ContactSection = () => {
                 ></textarea>
               </div>
 
-              <Button type="submit" className="py-2 px-5 text-masaud-dev-yellow font-bold text-xl mx-auto">Send Message</Button>
-            </form> 
+              <Button
+                type="submit"
+                className="py-2 px-5 text-masaud-dev-yellow font-bold text-xl mx-auto"
+              >
+                Send Message
+              </Button>
+            </form>
           </div>
 
           {/* Right Side: Lottie Animation */}

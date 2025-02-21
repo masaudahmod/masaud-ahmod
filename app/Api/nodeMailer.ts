@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Email content
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `${name} <${email}>`,
       to: process.env.EMAIL_USER, // তোমার ইমেইলে পাঠাবে
       subject: "New Contact Form Submission",
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
