@@ -18,7 +18,8 @@ const ContactSection = () => {
   const onSubmit = async (data: object) => {
     setStatus("Sending...");
     try {
-      const response = await fetch("/api/sendEmail", {
+      console.log("Form Data:", fetch("/Api/contact"));
+      const response = await fetch("/Api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,6 +37,7 @@ const ContactSection = () => {
       }
     } catch (error) {
       console.error("Error sending email:", error);
+      setStatus("Failed to send email");
     }
     console.log("Form Data:", data);
     reset();
@@ -64,6 +66,17 @@ const ContactSection = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="w-full max-w-lg bg-masaud-dev-dark-grey p-6 rounded-lg shadow-md"
             >
+              {status && (
+                <div
+                  className={`${
+                    status === "Email sent successfully!"
+                      ? "bg-green-100 text-green-800"
+                      : "bg-red-100 text-red-800"
+                  } p-2 text-center rounded-md`}
+                >
+                  {status}
+                </div>
+              )}
               <div className="mb-4">
                 <label
                   className={`block font-medium mb-1 ${
