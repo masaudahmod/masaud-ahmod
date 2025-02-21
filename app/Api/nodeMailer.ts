@@ -16,6 +16,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Gmail SMTP configuration
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER, // তোমার Gmail
         pass: process.env.EMAIL_PASS, // Gmail App Password
