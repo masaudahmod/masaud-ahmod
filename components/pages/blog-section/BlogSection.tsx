@@ -17,7 +17,7 @@ export default function BlogSection() {
             </div>
             <span
               data-cursor={true}
-              onClick={() => window.location.href = `/blogs`}
+              // onClick={() => window.location.href = `/blogs`}
               className="w-full h-[2px] bg-white"
             ></span>
             {/* <Button

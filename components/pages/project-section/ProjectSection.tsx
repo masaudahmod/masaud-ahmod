@@ -15,7 +15,7 @@ const ProjectSection = () => {
             <div data-cursor="true"  className="px-4 py-2 text-4xl sm:text-5xl font-bold text-AAsecondary">Projects</div>
             <Button
               data-cursor="true"
-              onClick={() => (window.location.href = "/projects")}
+              // onClick={() => (window.location.href = "/projects")}
             >
               View all
             </Button>
