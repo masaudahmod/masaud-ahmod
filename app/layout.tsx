@@ -5,6 +5,8 @@ import Cursor from "@/components/helper/Cursor";
 import Header from "@/components/Header/Header";
 import ScrollToTop from "@/components/helper/ScrollToTop";
 import ScrollProgress from "@/components/helper/ScrollProgress";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
+        <ToastContainer />
         <Header finishedLoading={true}/>
         <Cursor />
         <ScrollProgress />

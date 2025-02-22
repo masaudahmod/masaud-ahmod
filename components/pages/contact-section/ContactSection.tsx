@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import AnimationLottie from "@/components/helper/AnimationLottie";
 import contactLottie from "@/utils/animation/contact-lottie.json";
 import { Button } from "@/components/helper/CustomHtml";
-import { useState } from "react";
+import { Bounce, Slide, toast } from "react-toastify";
 
 const ContactSection = () => {
   const {
@@ -13,10 +13,18 @@ const ContactSection = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const [status, setStatus] = useState<string | null>(null);
-
   const onSubmit = async (data: object) => {
-    setStatus("Sending...");
+    toast.info(`Sending...`, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Slide,
+    });
     try {
       console.log("Form Data:", fetch("/Api/contact"));
       const response = await fetch("/Api/contact", {
@@ -29,15 +37,33 @@ const ContactSection = () => {
 
       const result = await response.json();
       if (response.ok) {
-        setStatus("Email sent successfully!");
+        toast.success("Email sent successfully!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
         reset();
       } else {
-        // setStatus("Failed to send email");
-        setStatus(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
     } catch (error) {
       console.error("Error sending email:", error);
-      setStatus("Failed to send email");
     }
     console.log("Form Data:", data);
     reset();
@@ -66,17 +92,6 @@ const ContactSection = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="w-full max-w-lg bg-masaud-dev-dark-grey p-6 rounded-lg shadow-md"
             >
-              {status && (
-                <div
-                  className={`${
-                    status === "Email sent successfully!"
-                      ? "bg-green-100 text-green-800"
-                      : "bg-red-100 text-red-800"
-                  } p-2 text-center rounded-md`}
-                >
-                  {status}
-                </div>
-              )}
               <div className="mb-4">
                 <label
                   className={`block font-medium mb-1 ${
