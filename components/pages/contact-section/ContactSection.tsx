@@ -92,6 +92,7 @@ const ContactSection = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="w-full max-w-lg bg-masaud-dev-dark-grey p-6 rounded-lg shadow-md"
             >
+              <h2 data-cursor="true" className="text-2xl font-semibold text-right py-2 text-masaud-dev-yellow mb-4">Feel free to reach out!</h2>
               <div className="mb-4">
                 <label
                   className={`block font-medium mb-1 ${
