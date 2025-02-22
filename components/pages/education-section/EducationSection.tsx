@@ -15,7 +15,7 @@ const EducationSection = () => {
     animationPath: educationLottie,
   };
   return (
-    <div id="educationSection" className="relative p-2 z-50 py-10 lg:py-24 bg-masaud-dev-purple/20">
+    <div id="educationSection" className="relative p-2 z-40 py-10 lg:py-24 bg-masaud-dev-purple/20">
       <div className="flex justify-center my-5 lg:py-8">
         <div className="flex  items-center">
           <span className="w-24 h-[2px] bg-[#362f5f]"></span>

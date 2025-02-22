@@ -6,7 +6,7 @@ export default function BlogSection() {
 
   return (
     <>
-      <section id="projectSection" className="snap-start bg-AAsecondary/5">
+      <section id="blogSection" className="snap-start bg-AAsecondary/5">
         <div className="container py-12">
           <div className="flex my-10 gap-4 items-center">
             <div
