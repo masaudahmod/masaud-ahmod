@@ -37,7 +37,7 @@ const ContactSection = () => {
 
       const result = await response.json();
       if (response.ok) {
-        toast.success("Email sent successfully!", {
+        toast.success("Email sent successfully! & Thanks for reaching out", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: true,
