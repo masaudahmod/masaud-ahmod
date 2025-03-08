@@ -151,7 +151,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           </span>
         </ReactScrollLink>
       </motion.span>
-      <a href={"/resume"} target={"_blank"} rel="noreferrer">
+      {/* <a href={"/resume"} target={"_blank"} rel="noreferrer">
         <motion.button data-cursor={true} 
           initial={{
             y: -40,
@@ -170,20 +170,16 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
         >
           Resume
         </motion.button>
-      </a>
-      {/* <div
+      </a> */}
+      <div
         onClick={() => {
-          ReactGA.event({
-            category: "Button.Click",
-            action: "Hire Me",
-          });
           window.open("mailto:masaudahmod@gmail.com");
         }}
         data-cursor={true}
-        className="mb-2 sm:mb-0 whitespace-nowrap text-center text-masaud-dev-green border border-masaud-dev-green rounded  w-full sm:w-auto px-1 text-sm hover:text-masaud-dev-yellow"
+        className="mb-2 sm:mb-0 whitespace-nowrap text-center py-2 px-3 text-masaud-dev-green border border-masaud-dev-green rounded  w-full sm:w-auto font-medium text-sm hover:text-masaud-dev-yellow"
       >
         Hire me!
-      </div> */}
+      </div>
     </div>
   );
 }
