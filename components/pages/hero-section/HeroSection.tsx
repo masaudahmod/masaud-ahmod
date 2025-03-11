@@ -17,10 +17,10 @@ function HeroSection() {
           <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
             Greetings! <br />
             This is{" "}
-            <span data-cursor={true} className=" text-pink-500">{personalData.name},</span>
+            <span data-cursor={true} className="text-[26px] lg:text-[2.6rem] text-[#30f7ed] px-1">{personalData.name},</span>
             {/* {` , A Professional `} */}
             <br /> A Passionate
-            <span className=" text-[#16f2b3]"> {personalData.designation}</span>
+            <span className="text-3xl lg:text-[2.6rem] text-[#f7dd31]"> {personalData.designation}</span>
           </h1>
 
           <div className="my-12 flex items-center gap-5">
@@ -70,7 +70,7 @@ function HeroSection() {
             <Link
               data-cursor={true}
               href="#contactSection"
-              className="bg-gradient-to-r z-50 to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
+              className="bg-gradient-to-r z-30 to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
             >
               <button
                 data-cursor={true}
@@ -84,7 +84,7 @@ function HeroSection() {
               data-cursor={true}
               href={personalData.resume}
               target="_blank"
-              className="bg-gradient-to-r z-50 to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
+              className="bg-gradient-to-r z-30 to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
             >
               <button
                 data-cursor={true}
@@ -96,6 +96,7 @@ function HeroSection() {
             </Link>
           </div>
         </div>
+    
         <div className="order-1 lg:order-2 from-[#0d1224] border-[#1b2c68a0] relative rounded-lg border bg-gradient-to-r to-[#0a0d37]">
           <div className="flex flex-row">
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600"></div>
