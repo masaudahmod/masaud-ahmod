@@ -26,7 +26,7 @@ const Projects: NextPage<Props> = () => {
     fetchProjectsStar().then((updatedProjectsListWithStars) => {
       setProjectList([...updatedProjectsListWithStars]);
     });
-  }, []);
+  }, [setProjectList]);
 
   useEffect(() => {
     const descendingSortFunction = (a: ProjectCardProps, b: ProjectCardProps) =>

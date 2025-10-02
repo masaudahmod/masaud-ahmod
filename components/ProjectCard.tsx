@@ -16,6 +16,7 @@ export type ProjectCardProps = {
   stars: number;
   priority: number;
   category: string;
+  priorityValue?: number;
 };
 
 export default function ProjectCard(props: ProjectCardProps) {
@@ -55,10 +56,10 @@ export default function ProjectCard(props: ProjectCardProps) {
         <div className="flex custom-scroll-bar-y justify-start items-center mt-3">
           {props.badges.map((badge, i) => (
             <Img
-            key={i}
-            className="m-1 opacity-80"
-            src={`${badgeImage[badge.toLowerCase()]}`}
-            alt={`${badge} badge image`}
+              key={i}
+              className="m-1 opacity-80"
+              src={`${badgeImage[badge.toLowerCase()]}`}
+              alt={`${badge} badge image`}
             />
           ))}
         </div>
