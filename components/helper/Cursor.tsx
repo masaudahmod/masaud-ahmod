@@ -166,7 +166,7 @@ export default function Cursor() {
   });
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // ✅ SSR safe
+    if (typeof window === "undefined") return ; // ✅ SSR safe
 
     const moveCursor = (e: WindowEventMap["mousemove"]) => {
       let width = "32px",
