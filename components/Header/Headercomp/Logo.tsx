@@ -17,7 +17,7 @@ export default function Logo(props: { finishedLoading: boolean }) {
         <Link href="/" className="cursor-pointer">
           <motion.span
             initial={{ x: 1 }}
-            className="absolute cursor-none h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary hover:text-masaud-dev-blue"
+            className="absolute cursor-none h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary hover:text-masaud-dev-blue transition-all duration-300 "
           >
             M
           </motion.span>

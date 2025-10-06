@@ -215,16 +215,16 @@ export default function Cursor() {
 
     const cursorScroll = () => {
       if (cursor.hoveredOver) return;
-      setCursor({
-        x: 700,
-        y: 400,
-        width: window.innerWidth + "px",
-        height: "4px",
-        borderRadius: "0",
-        hoveredOver: false,
-        scrolling: true,
-        hideDot: false,
-      });
+      // setCursor({
+      //   x: 700,
+      //   y: 400,
+      //   width: window.innerWidth + "px",
+      //   height: "4px",
+      //   borderRadius: "0",
+      //   hoveredOver: false,
+      //   scrolling: true,
+      //   hideDot: false,
+      // });
       resetCursor();
     };
 

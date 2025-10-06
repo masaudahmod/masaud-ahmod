@@ -30,7 +30,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 01.{" "}
-          <span className="text-white hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary transition-all duration-300">
             About
           </span>
         </ReactScrollLink>
@@ -59,7 +59,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 02.{" "}
-          <span className="text-white hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary transition-all duration-300">
             Experience
           </span>
         </ReactScrollLink>
@@ -88,7 +88,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 03.{" "}
-          <span className="text-white hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary transition-all duration-300">
             Work
           </span>
         </ReactScrollLink>
@@ -117,7 +117,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 03.{" "}
-          <span className="text-white hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary transition-all duration-300">
             Blogs
           </span>
         </ReactScrollLink>
@@ -146,7 +146,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean }) {
           duration={200}
         >
           &gt; 04.{" "}
-          <span className="text-white hover:text-AAsecondary duration-300">
+          <span className="text-white hover:text-AAsecondary transition-all duration-300">
             Contact
           </span>
         </ReactScrollLink>
