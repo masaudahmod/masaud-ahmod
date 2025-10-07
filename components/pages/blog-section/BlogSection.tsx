@@ -1,4 +1,5 @@
 "use client"
+
 import BlogCard from "@/components/BlogCard";
 import blogs from "@/utils/data/blogs.json";
 

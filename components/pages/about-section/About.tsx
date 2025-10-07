@@ -1,3 +1,5 @@
+"use server";
+
 import ArrowIcon from "@/components/reusable-com/ArrowIcons";
 import Img from "@/components/reusable-com/Img";
 import React from "react";
