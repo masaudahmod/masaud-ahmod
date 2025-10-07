@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 // import { useEffect, useState } from "react";
 
@@ -149,8 +149,6 @@
 //   );
 // }
 
-"use client";
-
 import { useEffect, useState } from "react";
 
 export default function Cursor() {
@@ -166,7 +164,7 @@ export default function Cursor() {
   });
 
   useEffect(() => {
-    if (typeof window === "undefined") return ; // ✅ SSR safe
+    if (typeof window === "undefined") return; // ✅ SSR safe
 
     const moveCursor = (e: WindowEventMap["mousemove"]) => {
       let width = "32px",
@@ -176,7 +174,7 @@ export default function Cursor() {
         y = e.clientY - 16,
         hoveredOver = false;
 
-      let hoveredElement: Element | null = null ;
+      let hoveredElement: Element | null = null;
       if (typeof document !== "undefined") {
         // hoveredElement = document.elementFromPoint(e.clientX, e.clientY);
         const element = document.elementFromPoint(e.clientX, e.clientY);
@@ -188,7 +186,10 @@ export default function Cursor() {
       const dataCursor = hoveredElement?.getAttribute("data-cursor");
       if (dataCursor) {
         if (dataCursor !== "true") {
-          hoveredElement = (hoveredElement?.closest(`[data-cursor="true"]`) as Element | null) ?? null;
+          hoveredElement =
+            (hoveredElement?.closest(
+              `[data-cursor="true"]`
+            ) as Element | null) ?? null;
         }
         if (!hoveredElement) return;
         const computedStyle = window.getComputedStyle(hoveredElement);

@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// import Cursor from "@/components/helper/Cursor";
 import Header from "@/components/Header/Header";
-import ScrollToTop from "@/components/helper/ScrollToTop";
-import ScrollProgress from "@/components/helper/ScrollProgress";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClientWrapper from "./(component)/ClientWrapper";
@@ -38,9 +35,7 @@ export default function RootLayout({
         <ToastContainer />
         <Header finishedLoading={true} />
         <ClientWrapper />
-        <ScrollProgress />
         {children}
-        <ScrollToTop />
       </body>
     </html>
   );
