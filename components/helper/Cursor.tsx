@@ -166,6 +166,15 @@ export default function Cursor() {
   useEffect(() => {
     if (typeof window === "undefined") return; // ✅ SSR safe
 
+    const resetCursor = () => {
+      setCursor((prev) => ({
+        ...prev,
+        width: "32px",
+        height: "32px",
+        borderRadius: "100%",
+        hoveredOver: false,
+      }));
+    };
     const moveCursor = (e: WindowEventMap["mousemove"]) => {
       let width = "32px",
         height = "32px",
@@ -254,16 +263,6 @@ export default function Cursor() {
           scrolling: false,
         });
       } else resetCursor();
-    };
-
-    const resetCursor = () => {
-      setCursor((prev) => ({
-        ...prev,
-        width: "32px",
-        height: "32px",
-        borderRadius: "100%",
-        hoveredOver: false,
-      }));
     };
 
     // ✅ Add listeners

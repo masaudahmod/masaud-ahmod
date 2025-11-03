@@ -44,9 +44,9 @@ const Header = ({ finishedLoading }: { finishedLoading: boolean }) => {
     setTimeout(() => setShowElement(true), 10400);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = rotate ? "hidden" : "auto";
-  }, [rotate]);
+  // useEffect(() => {
+  //   document.body.style.overflow = rotate ? "hidden" : "auto";
+  // }, [rotate]);
 
   return (
     <>
