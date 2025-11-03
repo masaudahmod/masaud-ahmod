@@ -1,5 +1,3 @@
-"use server";
-
 import { personalData } from "@/utils/data/personal-data";
 import Link from "next/link";
 import { BsGithub, BsLinkedin } from "react-icons/bs";

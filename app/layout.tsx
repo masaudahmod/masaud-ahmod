@@ -34,8 +34,8 @@ export default function RootLayout({
       >
         <ToastContainer />
         <Header finishedLoading={true} />
-        <ClientWrapper />
         {children}
+        <ClientWrapper />
       </body>
     </html>
   );
