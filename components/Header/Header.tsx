@@ -1,12 +1,19 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Logo from "./Headercomp/Logo";
-import DesktopMenu from "./Headercomp/DesktopMenu";
 import IconMenu from "./Headercomp/IconMenu";
-import MobileMenu from "./Headercomp/MobileMenu";
 import { motion } from "framer-motion";
 // import AppContext from "../AppContextFolder/AppContext";
+
+const DesktopMenu = dynamic(() => import("./Headercomp/DesktopMenu"), {
+  ssr: false,
+});
+
+const MobileMenu = dynamic(() => import("./Headercomp/MobileMenu"), {
+  ssr: false,
+});
 
 const Header = ({ finishedLoading }: { finishedLoading: boolean }) => {
   const RefNavBar = useRef<HTMLDivElement | null>(null);

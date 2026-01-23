@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { ToastContainer } from "react-toastify";
 
 const Cursor = dynamic(() => import("@/components/helper/Cursor"), {
   ssr: false,
@@ -18,6 +19,7 @@ const ScrollProgress = dynamic(
 export default function ClientWrapper() {
   return (
     <>
+      <ToastContainer />
       <Cursor />
       <ScrollToTop />
       <ScrollProgress />
