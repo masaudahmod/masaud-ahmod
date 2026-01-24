@@ -152,6 +152,7 @@
 import { useEffect, useState } from "react";
 
 export default function Cursor() {
+  const [isMouseInside, setIsMouseInside] = useState(true);
   const [cursor, setCursor] = useState({
     x: 0,
     y: 0,
@@ -162,6 +163,11 @@ export default function Cursor() {
     hideDot: false,
     scrolling: false,
   });
+
+  const handleMouseEnter = () => setIsMouseInside(true);
+  const handleMouseLeave = () => setIsMouseInside(false);
+  const handleWindowBlur = () => setIsMouseInside(false);
+  const handleWindowFocus = () => setIsMouseInside(true);
 
   useEffect(() => {
     if (typeof window === "undefined") return; // ✅ SSR safe
@@ -269,13 +275,23 @@ export default function Cursor() {
     window.addEventListener("mousemove", moveCursor);
     window.addEventListener("scroll", cursorScroll);
     window.addEventListener("click", checkCursor);
+    document.addEventListener("mouseenter", handleMouseEnter);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("blur", handleWindowBlur);
+    window.addEventListener("focus", handleWindowFocus);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("scroll", cursorScroll);
       window.removeEventListener("click", checkCursor);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("blur", handleWindowBlur);
+      window.removeEventListener("focus", handleWindowFocus);
     };
   }, [cursor.hoveredOver]);
+
+  if (!isMouseInside) return null;
 
   return (
     <>
