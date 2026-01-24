@@ -136,7 +136,7 @@ export default function AboutMe() {
                 <Img
                   src={"https://i.ibb.co.com/4ZMqPQ2/me.png"}
                   className={"object-contain rounded-lg"}
-                  alt="My Image Not Found"
+                  alt="Masaud Ahmod MERN Stack Developer"
                 />
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function AboutMe() {
                 <Img
                   src={"https://i.ibb.co.com/4ZMqPQ2/me.png"}
                   className={"object-contain rounded-lg"}
-                  alt="My Image Not Found"
+                  alt="Masaud Ahmod MERN Stack Developer"
                 />
               </div>
               <div className="absolute w-48 h-full  bg-AAsecondary opacity-10 md:opacity-60  rounded overflow-hidden"></div>

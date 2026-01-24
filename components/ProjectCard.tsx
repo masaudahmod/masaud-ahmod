@@ -59,7 +59,7 @@ export default function ProjectCard(props: ProjectCardProps) {
               key={i}
               className="m-1 opacity-80"
               src={`${badgeImage[badge.toLowerCase()]}`}
-              alt={`${badge} badge image`}
+              alt="Masaud Ahmod MERN Stack Developer"
             />
           ))}
         </div>

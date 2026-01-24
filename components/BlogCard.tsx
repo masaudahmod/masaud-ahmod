@@ -34,7 +34,7 @@ const BlogCard = (props: BlogCardProps) => {
           width={500}
           height={300}
           className="blog-cardImage"
-          alt={props.title}
+          alt="Masaud Ahmod MERN Stack Developer"
         />
       </div>
       <div>

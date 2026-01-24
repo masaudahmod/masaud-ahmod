@@ -49,7 +49,7 @@ const EducationSection = () => {
                       <div className="p-3 relative text-white">
                         <Image
                           src={Blur23B}
-                          alt="Hero"
+                          alt="Masaud Ahmod MERN Stack Developer"
                           width={1080}
                           height={200}
                           className="absolute bottom-0 opacity-80"
