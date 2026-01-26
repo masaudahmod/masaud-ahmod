@@ -1,7 +1,7 @@
 export const personalData = {
   name: "Masaud Ahmod",
   profile: "/profile.png",
-  designation: "Software Developer",
+  designation: "Web App Developer",
   description:
     "Masaud Ahmod is a passionate full-stack developer with a strong self-learning attitude and a love for problem-solving. Skilled in JavaScript, he enjoys building dynamic and efficient web applications. Always eager to explore new technologies, he thrives on making the web more accessible and impactful. Whether working on the frontend or backend, he’s dedicated to delivering high-quality solutions. Open to exciting opportunities, Masaud is ready to take on new challenges that align with his skills and passion. ",
   email: "masaudahmod@gmail.com",

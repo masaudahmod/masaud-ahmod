@@ -70,7 +70,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contactSection" className=" bg-masaud-dev-purple/20">
+    <section id="contactSection" className="bg-masaud-dev-primary-black">
       <div className="container p-2 py-10 lg:py-24">
         <div className="flex justify-start my-5 lg:py-8">
           <div className="flex justify-center w-full items-center">

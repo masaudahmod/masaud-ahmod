@@ -10,15 +10,14 @@ export default function AboutMe() {
   return (
     <div
       id="aboutSection"
-      className="snap-start flex flex-col  items-center py-20 bg-masaud-dev-blue/10"
+      className="snap-start flex flex-col  items-center py-20 bg-masaud-dev-primary-black"
     >
       {/* <div className="container mx-auto"> */}
         {/* // ? 0.1 About Me */}
         <div
-          className="flex flex-col space-y-8 px-4 sm:px-0 w-full sm:w-[500px] 
-        md:w-[700px] lg:w-[900px] "
+          className="flex flex-col space-y-8 px-4 sm:px-0 w-full container mx-auto "
         >
-          <div className="flex flex-row items-center ">
+          <div data-cursor="true" className="flex flex-row items-center justify-center">
             <div className="flex flex-row items-center mr-4">
               {/* <ArrowIcon
               className={
@@ -37,7 +36,7 @@ export default function AboutMe() {
           </div>
           {/* // ? Paragraphs */}
 
-          <div className="w-full flex flex-col md:flex-row space-y-8 md:space-y-0  md:space-x-8 sm:space-x-2 ">
+          <div className="w-full flex flex-col md:flex-row justify-evenly items-center space-y-8 md:space-y-0  md:space-x-8 sm:space-x-2 ">
             <div className="w-full md:w-7/12 space-y-4 sm:text-base text-sm ">
               <div className="font-Header text-justify">
                 <span className="text-gray-400 ">

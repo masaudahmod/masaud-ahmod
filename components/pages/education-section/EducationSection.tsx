@@ -14,7 +14,7 @@ const EducationSection = () => {
     animationPath: educationLottie,
   };
   return (
-    <section id="educationSection" className="bg-masaud-dev-primary-black ">
+    <section id="educationSection" className="bg-masaud-dev-primary-black">
       <div className="container p-2 z-40 py-10 lg:py-24">
         <div className="relative">
           <div className="flex justify-center my-5 lg:py-8">
@@ -31,7 +31,7 @@ const EducationSection = () => {
           </div>
 
           <div className="py-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center lg:gap-16">
               <div className="flex justify-center items-start">
                 <div className="w-3/4 h-3/4">
                   {/* Left Side Lottie Animation */}
@@ -40,7 +40,7 @@ const EducationSection = () => {
               </div>
 
               <div>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col justify-center gap-6">
                   {educations.map((education) => (
                     <GlowCard
                       key={education.id}

@@ -10,11 +10,5 @@ export const educations = [
     title: "Higher Secondary Certificate",
     duration: "2019 - 2021",
     institution: "Shahjalal Jamia Islamia School and College",
-  },
-  {
-    id: 3,
-    title: "Secondary School Certificate",
-    duration: "2013 - 2018",
-    institution: "Panchagram High School And College",
   }
 ]
