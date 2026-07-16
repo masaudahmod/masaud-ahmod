@@ -17,34 +17,34 @@ export default function Logo(props: { finishedLoading: boolean }) {
         <Link href="/" className="cursor-pointer">
           <motion.span
             initial={{ x: 1 }}
-            className="absolute cursor-none h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary hover:text-masaud-dev-blue transition-all duration-300 "
+            className="absolute cursor-none h-full w-full flex justify-center items-center text-lg font-sans text-brand-accent hover:text-brand-slateLight transition-all duration-300 "
           >
             M
           </motion.span>
 
           <motion.div
             animate={{ rotate: -30, y: 5 }}
-            className="h-1 w-6 rounded cursor-none bg-AAsecondary"
+            className="h-1 w-6 rounded cursor-none bg-brand-accent"
           ></motion.div>
           <motion.div
             animate={{ rotate: 90, x: -10, y: 18 }}
-            className="h-1 w-6 rounded cursor-none bg-AAsecondary"
+            className="h-1 w-6 rounded cursor-none bg-brand-accent"
           ></motion.div>
           <motion.div
             animate={{ rotate: 30, y: 31 }}
-            className="h-1 w-6 rounded cursor-none bg-AAsecondary"
+            className="h-1 w-6 rounded cursor-none bg-brand-accent"
           ></motion.div>
           <motion.div
             animate={{ rotate: -30, y: 27, x: 19 }}
-            className="h-1 w-6 rounded cursor-none bg-AAsecondary"
+            className="h-1 w-6 rounded cursor-none bg-brand-accent"
           ></motion.div>
           <motion.div
             animate={{ rotate: 30, x: 19, y: -10 }}
-            className="h-1 w-6 rounded cursor-none bg-AAsecondary"
+            className="h-1 w-6 rounded cursor-none bg-brand-accent"
           ></motion.div>
           <motion.div
             animate={{ rotate: 90, x: 28, y: 2 }}
-            className="h-1 w-6 rounded cursor-none bg-AAsecondary"
+            className="h-1 w-6 rounded cursor-none bg-brand-accent"
           ></motion.div>
         </Link>
       </motion.div>

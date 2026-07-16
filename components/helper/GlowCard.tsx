@@ -95,7 +95,7 @@ const GlowCard = ({ children, identifier }: GlowCardProps) => {
   return (
     <div className={`glow-container-${identifier} glow-container`}>
       <article
-        className={`glow-card glow-card-${identifier} h-fit cursor-pointer border border-[#2a2e5a] transition-all duration-300 relative bg-[#101123] text-gray-200 rounded-xl hover:border-transparent w-full`}
+        className={`glow-card glow-card-${identifier} h-fit cursor-pointer border border-brand-navyMuted transition-all duration-300 relative bg-brand-navyLight text-brand-slateLight rounded-xl hover:border-brand-accent/30 w-full`}
       >
         <div className="glows"></div>
         {children}

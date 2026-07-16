@@ -5,10 +5,10 @@ const Button = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     <button
       data-cursor={true} // This is for custom cursor
       {...props}
-      className={`font-light whitespace-nowrap flex justify-center items-center bg-v9-secondary-black px-3 py-1 border-2 rounded-md border-opacity-5 transition-colors ${
+      className={`font-light whitespace-nowrap flex justify-center items-center bg-brand-navyLight px-3 py-1 border border-brand-navyMuted rounded-md transition-colors ${
         props.disabled
           ? "opacity-50"
-          : "hover:border-v9-pink hover:border-opacity-30 "
+          : "hover:border-brand-accent hover:text-brand-accent"
       } ${props.className ? props.className : ""}`}
     />
   );
@@ -19,7 +19,7 @@ const Hr = ({ width = "100%" }) => {
     <div className="flex justify-center">
       <div
         style={{ height: "1px", width }}
-        className="my-6 bg-gray-600 w-full"
+        className="my-6 bg-brand-navyMuted w-full"
       ></div>
     </div>
   );

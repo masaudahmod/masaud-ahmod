@@ -1,10 +1,10 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import AnimationLottie from "@/components/helper/AnimationLottie";
-import contactLottie from "@/utils/animation/contact-lottie.json";
 import { Button } from "@/components/helper/CustomHtml";
+import SectionHeading from "@/components/reusable-com/SectionHeading";
 import { Bounce, Slide, toast } from "react-toastify";
+import { RiMailSendLine } from "react-icons/ri";
 
 const ContactSection = () => {
   const {
@@ -13,20 +13,19 @@ const ContactSection = () => {
     formState: { errors },
     reset,
   } = useForm();
+
   const onSubmit = async (data: object) => {
-    toast.info(`Sending...`, {
+    toast.info("Sending...", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
-      theme: "light",
+      theme: "dark",
       transition: Slide,
     });
     try {
-      console.log("Form Data:", fetch("/Api/contact"));
       const response = await fetch("/Api/contact", {
         method: "POST",
         headers: {
@@ -44,8 +43,7 @@ const ContactSection = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
-          theme: "light",
+          theme: "dark",
           transition: Slide,
         });
         reset();
@@ -57,117 +55,98 @@ const ContactSection = () => {
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
-          theme: "light",
+          theme: "dark",
           transition: Bounce,
         });
       }
     } catch (error) {
       console.error("Error sending email:", error);
     }
-    console.log("Form Data:", data);
-    reset();
   };
 
+  const inputClass = (hasError: boolean) =>
+    `w-full bg-brand-navy p-3 border rounded-md text-brand-slateLight placeholder-brand-slate/50 outline-none transition-colors focus:border-brand-accent ${
+      hasError ? "border-red-500" : "border-brand-navyMuted"
+    }`;
+
+  const labelClass = (hasError: boolean) =>
+    `block font-mono text-sm mb-2 ${
+      hasError ? "text-red-500" : "text-brand-accent"
+    }`;
+
   return (
-    <section id="contactSection" className="bg-masaud-dev-primary-black">
-      <div className="container p-2 py-10 lg:py-24">
-        <div className="flex justify-start my-5 lg:py-8">
-          <div className="flex justify-center w-full items-center">
-            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-            <span
+    <section id="contactSection" className="bg-brand-navy py-20">
+      <div className="container">
+        <SectionHeading number="05" title="Contact" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full max-w-lg"
+          >
+            <h2
               data-cursor="true"
-              className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md"
+              className="text-2xl font-semibold text-brand-slateLight mb-6"
             >
-              Contact
-            </span>
-            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-          </div>
-        </div>
+              Feel free to reach out!
+            </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* Left Side: Contact Form */}
-          <div className="flex justify-center items-center">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="w-full max-w-lg bg-masaud-dev-dark-grey p-6 rounded-lg shadow-md"
+            <div className="mb-4">
+              <label className={labelClass(!!errors.name)}>Name</label>
+              <input
+                data-cursor-focusable="true"
+                placeholder="Your Name"
+                type="text"
+                {...register("name", { required: "Name is required" })}
+                className={inputClass(!!errors.name)}
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className={labelClass(!!errors.email)}>Email</label>
+              <input
+                data-cursor-focusable="true"
+                placeholder="your@email.com"
+                type="email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Invalid email address",
+                  },
+                })}
+                className={inputClass(!!errors.email)}
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className={labelClass(!!errors.message)}>Message</label>
+              <textarea
+                placeholder="Your Message"
+                rows={5}
+                data-cursor-focusable="true"
+                {...register("message", { required: "Message is required" })}
+                className={inputClass(!!errors.message)}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              className="py-2 px-6 text-brand-accent border-brand-accent hover:bg-brand-accent/10"
             >
-              <h2 data-cursor="true" className="text-2xl font-semibold text-right py-2 text-masaud-dev-yellow mb-4">Feel free to reach out!</h2>
-              <div className="mb-4">
-                <label
-                  className={`block font-medium mb-1 ${
-                    errors.name ? "text-red-500" : "text-masaud-dev-yellow"
-                  }`}
-                >
-                  Name
-                </label>
-                <input
-                  data-cursor-focusable="true"
-                  placeholder="Your Name"
-                  type="text"
-                  {...register("name", { required: "Name is required" })}
-                  className={`w-full bg-masaud-dev-purple/20 p-2 border ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  } rounded-md`}
-                />
-              </div>
+              Send Message
+            </Button>
+          </form>
 
-              <div className="mb-4">
-                <label
-                  className={`block font-medium mb-1 ${
-                    errors.email ? "text-red-500" : "text-masaud-dev-yellow"
-                  }`}
-                >
-                  Email
-                </label>
-                <input
-                  data-cursor-focusable="true"
-                  placeholder="Your Email"
-                  type="email"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  className={`w-full bg-masaud-dev-purple/20 p-2 border ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  } rounded-md`}
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className={`block font-medium mb-1 ${
-                    errors.message ? "text-red-500" : "text-masaud-dev-yellow"
-                  }`}
-                >
-                  Message
-                </label>
-                <textarea
-                  placeholder="Your Message"
-                  data-cursor-focusable="true"
-                  {...register("message", { required: "Message is required" })}
-                  className={`w-full bg-masaud-dev-purple/20 p-2 border ${
-                    errors.message ? "border-red-500" : "border-gray-300"
-                  } rounded-md`}
-                ></textarea>
-              </div>
-
-              <Button
-                type="submit"
-                className="py-2 px-5 text-masaud-dev-yellow font-bold text-xl mx-auto"
-              >
-                Send Message
-              </Button>
-            </form>
-          </div>
-
-          {/* Right Side: Lottie Animation */}
           <div className="flex justify-center items-center">
-            <div className="w-3/4 h-3/4">
-              <AnimationLottie animationPath={contactLottie} />
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full bg-brand-accent/5 border border-brand-navyMuted animate-pulse-ring" />
+              <div className="absolute inset-4 rounded-full bg-brand-accent/10 border border-brand-accent/20 animate-pulse-ring [animation-delay:1.25s]" />
+              <div className="absolute inset-8 rounded-full bg-brand-accent/10 border border-brand-accent/20 animate-pulse-ring [animation-delay:2.25s]" />
+              <RiMailSendLine
+                className="text-brand-accent relative z-10"
+                size={80}
+              />
             </div>
           </div>
         </div>
