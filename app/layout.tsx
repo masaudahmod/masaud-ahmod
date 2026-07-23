@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.css"; // eslint-disable-line no-unused-vars
 import Header from "@/components/Header/Header";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; // eslint-disable-line no-unused-vars
 import Context from "@/components/context";
 import ClientWrapper from "./(component)/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";

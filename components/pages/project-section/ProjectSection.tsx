@@ -17,7 +17,7 @@ const ProjectSection = () => {
       className="snap-start bg-brand-navy py-20"
     >
       <div className="container">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-10">
           <SectionHeading number="03" title="Projects" className="mb-0 flex-1" />
           <Button
             data-cursor="true"

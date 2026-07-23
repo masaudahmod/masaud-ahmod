@@ -14,7 +14,7 @@ export default function SectionHeading({
   return (
     <div
       data-cursor="true"
-      className={`section-heading mb-10 ${className}`}
+      className={`section-heading ${className}`}
     >
       <span className="section-heading-number">&gt; {number}.</span>
       <span className="section-heading-title">{title}</span>
