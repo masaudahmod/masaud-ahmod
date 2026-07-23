@@ -3,23 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a192f;
+  --foreground: #ccd6f6;
+  --font-geist-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-geist-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 }
 ::-webkit-scrollbar {
   display: none;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   scrollbar-width: none;
 }
 .theme-container {
@@ -39,6 +36,22 @@ textarea {
     @apply max-w-[1400px] mx-auto px-2;
   }
 
+  .section-heading {
+    @apply flex flex-row items-center w-full;
+  }
+
+  .section-heading-number {
+    @apply font-mono text-brand-accent text-sm sm:text-base whitespace-nowrap;
+  }
+
+  .section-heading-title {
+    @apply font-mono text-brand-slateLight text-lg sm:text-2xl font-semibold whitespace-nowrap ml-2;
+  }
+
+  .section-heading-line {
+    @apply bg-brand-navyMuted h-px w-full ml-4;
+  }
+
   /* blogs */
   .blog-card:hover .blog-cardImage {
     @apply scale-125;
@@ -47,7 +60,7 @@ textarea {
     @apply -right-0;
   }
   .blog-card-yeartags {
-    @apply absolute top-6 -right-full font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey/70 px-2 py-1 pr-7 rounded-l-xl;
+    @apply absolute top-6 -right-full font-bold font-mono text-xl transition-all duration-300 text-brand-navy bg-brand-accent/70 px-2 py-1 pr-7 rounded-l-xl;
   }
   .blog-cardImage{
     @apply rounded-md h-full transition-all duration-300
@@ -86,8 +99,8 @@ textarea {
   background-image: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0,
-    #feff8620 20%,
-    #feff8650 70%,
+    #64ffda20 20%,
+    #64ffda50 70%,
     rgba(255, 255, 255, 0)
   );
   -webkit-animation: shimmer 1500ms infinite;
@@ -272,11 +285,11 @@ button {
   content: "";
   background: conic-gradient(
     from 180deg at 50% 70%,
-    #f626af 0deg,
-    #8228ec 72.0000010728836deg,
-    #f626af 144.0000021457672deg,
-    #0025ba 216.00000858306885deg,
-    #f626af 288.0000042915344deg,
+    #64ffda 0deg,
+    #112240 72deg,
+    #64ffda 144deg,
+    #233554 216deg,
+    #64ffda 288deg,
     #fafafa 1turn
   );
   background-attachment: fixed;
@@ -304,7 +317,7 @@ button {
   content: "";
   border-radius: 12px;
   pointer-events: none;
-  background: #84738c;
+  background: #233554;
   background-attachment: fixed;
   border-radius: 12px;
   mask: linear-gradient(#0000, #0000),
@@ -331,11 +344,11 @@ button {
   position: absolute;
   background: conic-gradient(
     from 180deg at 50% 70%,
-    #f626af 0deg,
-    #8228ec 72.0000010728836deg,
-    #f626af 144.0000021457672deg,
-    #0025ba 216.00000858306885deg,
-    #f626af 288.0000042915344deg,
+    #64ffda 0deg,
+    #112240 72deg,
+    #64ffda 144deg,
+    #233554 216deg,
+    #64ffda 288deg,
     #fafafa 1turn
   );
   background-attachment: fixed;

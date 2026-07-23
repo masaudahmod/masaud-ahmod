@@ -9,10 +9,16 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co.com',
+      },
     ],
   },
-  // https://i.ibb.co.com/4ZMqPQ2/me.png
-  // domains: ["http://192.168.1.5:3000", "http://localhost:3000", "vercel.com", "images.unsplash.com"],
 };
 
 export default nextConfig;

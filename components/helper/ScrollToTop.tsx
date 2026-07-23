@@ -59,11 +59,11 @@ const ScrollToTop = () => {
     <button
       data-cursor="true"
       onClick={onClickBtn}
-      className={`fixed bottom-8 right-6 z-50 flex items-center rounded-full bg-gradient-to-r from-blue-500 to-violet-600 p-4 transition-all duration-300 ease-out hover:text-xl ${
+      className={`fixed bottom-8 right-6 z-50 flex items-center rounded-full bg-brand-accent p-4 transition-all duration-300 ease-out hover:scale-110 ${
         visible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
-      <FaArrowUp className="text-masaud-dev-primary-black z-10" />
+      <FaArrowUp className="text-brand-navy z-10" />
     </button>
   );
 };

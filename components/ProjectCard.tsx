@@ -8,8 +8,13 @@ import Img from "./reusable-com/Img";
 
 export type ProjectCardProps = {
   title: string;
+  tabLabel?: string;
+  role?: string;
+  duration?: string;
   tagline: string;
   badges: string[];
+  highlights?: string[];
+  contributions?: string[];
   year: number;
   github_url: string;
   demo_url: string;
@@ -25,12 +30,12 @@ export default function ProjectCard(props: ProjectCardProps) {
     setCardId(props.title.replace(/\s/g, "-").toLowerCase());
   }, [props.title]);
   return (
-    <div className=" flex flex-col justify-between py-6 px-6 border border-opacity-10 rounded-md bg-masaud-dev-secondary-black transition-colors">
+    <div className=" flex flex-col justify-between py-6 px-6 border border-brand-navyMuted rounded-md bg-brand-navyLight transition-colors hover:border-brand-accent/30">
       <div>
         <div className="flex items-center justify-between">
-          <div className="text-masaud-dev-pink">{props.year}</div>
+          <div className="text-brand-accent">{props.year}</div>
           {props.stars ? (
-            <div className=" text-masaud-dev-yellow flex items-center">
+            <div className=" text-brand-slateLight flex items-center">
               <span className="mr-2">{props.stars}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,8 +52,8 @@ export default function ProjectCard(props: ProjectCardProps) {
             </div>
           ) : null}
         </div>
-        <div className=" text-lg 2xl:text-xl mt-2">{props.title}</div>
-        <div className=" text-masaud-dev-light-grey font-light mt-2">
+        <div className=" text-lg 2xl:text-xl mt-2 text-brand-slateLight">{props.title}</div>
+        <div className=" text-brand-slate font-light mt-2">
           {props.tagline}
         </div>
       </div>

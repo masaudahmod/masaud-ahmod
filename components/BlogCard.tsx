@@ -21,14 +21,14 @@ const BlogCard = (props: BlogCardProps) => {
   //   router.push(`/blogs/${id}`);
   // };
   return (
-    <div className="relative blog-card flex flex-col justify-between py-6 px-6 border overflow-hidden rounded-xl border-opacity-10 bg-masaud-dev-secondary-black transition-colors">
-      <div className="block md:hidden absolute top-6 right-0 font-bold font-mono text-xl transition-all duration-300 text-AAprimary bg-masaud-dev-light-grey/70 px-2 py-1 pr-7 rounded-l-xl  z-50">
+    <div className="relative blog-card flex flex-col justify-between py-6 px-6 border overflow-hidden rounded-xl border-brand-navyMuted bg-brand-navyLight transition-colors hover:border-brand-accent/30">
+      <div className="block md:hidden absolute top-6 right-0 font-bold font-mono text-xl transition-all duration-300 text-brand-navy bg-brand-accent/70 px-2 py-1 pr-7 rounded-l-xl z-50">
         {props.year}
       </div>
       <div className="blog-card-yeartags z-50">
         {props.year}
       </div>
-      <div className="w-full h-48 overflow-hidden rounded-lg object-cover bg-masaud-dev-dark-grey">
+      <div className="w-full h-48 overflow-hidden rounded-lg object-cover bg-brand-navyMuted">
         <Image
           src={props.image}
           width={500}
@@ -38,10 +38,10 @@ const BlogCard = (props: BlogCardProps) => {
         />
       </div>
       <div>
-        <div className="cursor-none transition-all duration-300 hover:text-AAsecondary text-lg 2xl:text-xl mt-2">
+        <div className="cursor-none transition-all duration-300 hover:text-brand-accent text-lg 2xl:text-xl mt-2 text-brand-slateLight">
           {props.title}
         </div>
-        <div className=" text-masaud-dev-light-grey font-light mt-2">
+        <div className="text-brand-slate font-light mt-2">
           {props.tagline}
         </div>
       </div>

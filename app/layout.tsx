@@ -1,22 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "./globals.css"; // eslint-disable-line no-unused-vars
 import Header from "@/components/Header/Header";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; // eslint-disable-line no-unused-vars
+import Context from "@/components/context";
 import ClientWrapper from "./(component)/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Masaud Ahmod | MERN Stack & Full Stack Developer",
@@ -75,12 +64,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-      >
+      <body className="antialiased">
         <Header finishedLoading={true} />
-        <ClientWrapper />
-        {children}
+        <Context>
+          <ClientWrapper />
+          {children}
+        </Context>
         <Analytics />
         <SpeedInsights />
       </body>

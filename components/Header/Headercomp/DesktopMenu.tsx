@@ -1,182 +1,51 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link as ReactScrollLink } from "react-scroll";
-// import ReactGA from "react-ga4";
+
+const navItems = [
+  { number: "01", label: "About", target: "aboutSection", offset: -100 },
+  { number: "02", label: "Education", target: "educationSection", offset: -100 },
+  { number: "03", label: "Projects", target: "projectSection", offset: -100 },
+  { number: "04", label: "Blogs", target: "blogSection", offset: -100 },
+  { number: "05", label: "Contact", target: "contactSection", offset: -100 },
+];
 
 export default function DesktopMenu(props: { finishedLoading: boolean }) {
   return (
-    <div className="font-mono  text-xs md:flex hidden flex-row items-center space-x-8 ">
-      <motion.div
-        initial={{
-          y: -40,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          type: "spring",
-          duration: props.finishedLoading ? 0 : 1.2,
-          delay: props.finishedLoading ? 0 : 9.4,
-        }}
-        className=" text-AAsecondary"
-      >
-        <ReactScrollLink
-          to="aboutSection"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={200}
-        >
-          &gt; 01.{" "}
-          <span className="text-white hover:text-AAsecondary transition-all duration-300">
-            About
-          </span>
-        </ReactScrollLink>
-      </motion.div>
-      <motion.div
-        initial={{
-          y: -40,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          type: "spring",
-          duration: props.finishedLoading ? 0 : 1.2,
-          delay: props.finishedLoading ? 0 : 9.7,
-        }}
-        className="text-AAsecondary"
-      >
-        <ReactScrollLink
-          to="WhereIhaveWorkedSection"
-          spy={true}
-          smooth={true}
-          offset={-300}
-          duration={200}
-        >
-          &gt; 02.{" "}
-          <span className="text-white hover:text-AAsecondary transition-all duration-300">
-            Experience
-          </span>
-        </ReactScrollLink>
-      </motion.div>
-      <motion.div
-        initial={{
-          y: -40,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          type: "spring",
-          duration: props.finishedLoading ? 0 : 1.2,
-          delay: props.finishedLoading ? 0 : 9.8,
-        }}
-        className="text-AAsecondary"
-      >
-        <ReactScrollLink
-          to="projectSection"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={200}
-        >
-          &gt; 03.{" "}
-          <span className="text-white hover:text-AAsecondary transition-all duration-300">
-            Work
-          </span>
-        </ReactScrollLink>
-      </motion.div>
-      <motion.div
-        initial={{
-          y: -40,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          type: "spring",
-          duration: props.finishedLoading ? 0 : 1.2,
-          delay: props.finishedLoading ? 0 : 9.8,
-        }}
-        className="text-AAsecondary"
-      >
-        <ReactScrollLink
-          to="blogSection"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={200}
-        >
-          &gt; 03.{" "}
-          <span className="text-white hover:text-AAsecondary transition-all duration-300">
-            Blogs
-          </span>
-        </ReactScrollLink>
-      </motion.div>
-      <motion.span
-        initial={{
-          y: -40,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          type: "spring",
-          duration: props.finishedLoading ? 0 : 1.2,
-          delay: props.finishedLoading ? 0 : 10,
-        }}
-        className="text-AAsecondary"
-      >
-        <ReactScrollLink
-          to="contactSection"
-          spy={true}
-          smooth={true}
-          offset={-100}
-          duration={200}
-        >
-          &gt; 04.{" "}
-          <span className="text-white hover:text-AAsecondary transition-all duration-300">
-            Contact
-          </span>
-        </ReactScrollLink>
-      </motion.span>
-      {/* <a href={"/resume"} target={"_blank"} rel="noreferrer">
-        <motion.button data-cursor={true} 
-          initial={{
-            y: -40,
-            opacity: 0,
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-          }}
+    <div className="font-mono text-xs md:flex hidden flex-row items-center space-x-8">
+      {navItems.map((item, index) => (
+        <motion.div
+          key={item.target}
+          initial={{ y: -40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{
             type: "spring",
             duration: props.finishedLoading ? 0 : 1.2,
-            delay: props.finishedLoading ? 0 : 10.2,
+            delay: props.finishedLoading ? 0 : 9.4 + index * 0.3,
           }}
-          className="text-secondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
+          className="text-brand-accent"
         >
-          Resume
-        </motion.button>
-      </a> */}
+          <ReactScrollLink
+            to={item.target}
+            spy={true}
+            smooth={true}
+            offset={item.offset}
+            duration={200}
+          >
+            &gt; {item.number}.{" "}
+            <span className="text-brand-slateLight hover:text-brand-accent transition-all duration-300">
+              {item.label}
+            </span>
+          </ReactScrollLink>
+        </motion.div>
+      ))}
+
       <div
         onClick={() => {
           window.open("mailto:masaudahmod@gmail.com");
         }}
         data-cursor={true}
-        className="mb-2 sm:mb-0 whitespace-nowrap text-center py-2 px-3 text-masaud-dev-green border border-masaud-dev-green rounded  w-full sm:w-auto font-medium text-sm hover:text-masaud-dev-yellow"
+        className="mb-2 sm:mb-0 whitespace-nowrap text-center py-2 px-3 text-brand-accent border border-brand-accent rounded w-full sm:w-auto font-medium text-sm hover:bg-brand-accent/10 transition-all duration-300"
       >
         Hire me!
       </div>
