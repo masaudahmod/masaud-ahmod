@@ -1,0 +1,977 @@
+// ======================================================
+// ENUMS
+// ======================================================
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  BANNED
+}
+
+enum RoleType {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+  AUTHOR
+  USER
+}
+
+enum PermissionAction {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  MANAGE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum TokenType {
+  ACCESS
+  REFRESH
+  PASSWORD_RESET
+  EMAIL_VERIFICATION
+}
+
+enum PostStatus {
+  DRAFT
+  REVIEW
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum CommentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SPAM
+}
+
+enum MediaProvider {
+  LOCAL
+  CLOUDINARY
+  AWS_S3
+  BUNNY
+  UPLOADTHING
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+  OTHER
+}
+
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum MenuLocation {
+  HEADER
+  FOOTER
+  SIDEBAR
+  MOBILE
+}
+
+enum ContactStatus {
+  NEW
+  READ
+  REPLIED
+  CLOSED
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+}
+
+enum SettingType {
+  STRING
+  NUMBER
+  BOOLEAN
+  JSON
+}
+
+enum ActivityType {
+  LOGIN
+  LOGOUT
+  REGISTER
+  PASSWORD_RESET
+  PROFILE_UPDATED
+  POST_CREATED
+  POST_UPDATED
+  POST_DELETED
+  COMMENT_CREATED
+  COMMENT_UPDATED
+  COMMENT_DELETED
+  MEDIA_UPLOADED
+}
+
+enum RedirectType {
+  PERMANENT
+  TEMPORARY
+}
+
+// ======================================================
+// GENERATOR & DATASOURCE
+// ======================================================
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ======================================================
+// USER
+// ======================================================
+
+model User {
+  id              String      @id @default(uuid())
+
+  email           String      @unique
+  username        String      @unique
+
+  password        String
+
+  emailVerified   Boolean     @default(false)
+
+  status          UserStatus  @default(ACTIVE)
+
+  lastLoginAt     DateTime?
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  deletedAt       DateTime?
+
+  // Relations
+
+  profile         UserProfile?
+
+  roleId          String?
+  role            Role?       @relation(fields: [roleId], references: [id])
+
+  sessions        Session[]
+  refreshTokens   RefreshToken[]
+
+  authoredPosts   Post[]
+
+  comments        Comment[]
+
+  notifications   Notification[]
+
+  auditLogs       AuditLog[]
+
+  activities      ActivityLog[]
+
+  uploadedMedia   Media[]
+
+  @@index([email])
+  @@index([username])
+  @@index([status])
+}
+
+// ======================================================
+// USER PROFILE
+// ======================================================
+
+model UserProfile {
+
+  id              String   @id @default(uuid())
+
+  userId          String   @unique
+
+  firstName       String?
+  lastName        String?
+
+  displayName     String?
+
+  avatar          String?
+
+  bio             String? @db.Text
+
+  phone           String?
+
+  website         String?
+
+  location        String?
+
+  dateOfBirth     DateTime?
+
+  gender          Gender?
+
+  facebook        String?
+  twitter         String?
+  linkedin        String?
+  github          String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+}
+
+// ======================================================
+// ROLE
+// ======================================================
+
+model Role {
+
+  id              String      @id @default(uuid())
+
+  name            RoleType    @unique
+
+  description     String?
+
+  users           User[]
+
+  permissions     RolePermission[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+}
+
+// ======================================================
+// PERMISSION
+// ======================================================
+
+model Permission {
+
+  id              String @id @default(uuid())
+
+  resource        String
+
+  action          PermissionAction
+
+  description     String?
+
+  roles           RolePermission[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([resource, action])
+
+}
+
+// ======================================================
+// ROLE PERMISSION
+// ======================================================
+
+model RolePermission {
+
+  id              String @id @default(uuid())
+
+  roleId          String
+  permissionId    String
+
+  role            Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  permission      Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+
+}
+
+// ======================================================
+// SESSION
+// ======================================================
+
+model Session {
+
+  id              String @id @default(uuid())
+
+  userId          String
+
+  token           String @unique
+
+  ipAddress       String?
+
+  userAgent       String?
+
+  expiresAt       DateTime
+
+  createdAt       DateTime @default(now())
+
+  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+
+}
+
+// ======================================================
+// REFRESH TOKEN
+// ======================================================
+
+model RefreshToken {
+
+  id              String @id @default(uuid())
+
+  userId          String
+
+  token           String @unique
+
+  expiresAt       DateTime
+
+  revoked         Boolean @default(false)
+
+  createdAt       DateTime @default(now())
+
+  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ======================================================
+// POST
+// ======================================================
+
+model Post {
+
+  id               String      @id @default(uuid())
+
+  title            String
+  slug             String      @unique
+
+  excerpt          String?     @db.Text
+
+  featuredImageId  String?
+
+  authorId         String
+
+  categoryId       String?
+
+  status           PostStatus  @default(DRAFT)
+
+  isFeatured       Boolean     @default(false)
+
+  allowComments    Boolean     @default(true)
+
+  publishedAt      DateTime?
+
+  scheduledAt      DateTime?
+
+  views            Int         @default(0)
+
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  deletedAt        DateTime?
+
+  // Relations
+
+  author           User        @relation(fields: [authorId], references: [id])
+
+  category         Category?   @relation(fields: [categoryId], references: [id])
+
+  featuredImage    Media?      @relation("FeaturedImage", fields: [featuredImageId], references: [id])
+
+  content          PostContent?
+
+  comments         Comment[]
+
+  tags             PostTag[]
+
+  seo              SeoMetadata?
+
+  @@index([slug])
+  @@index([status])
+  @@index([authorId])
+  @@index([categoryId])
+  @@index([publishedAt])
+}
+
+// ======================================================
+// POST CONTENT
+// ======================================================
+
+model PostContent {
+
+  id              String      @id @default(uuid())
+
+  postId          String      @unique
+
+  content         String      @db.Text
+
+  tableOfContents Json?
+
+  wordCount       Int         @default(0)
+
+  readingTime     Int         @default(0)
+
+  version         Int         @default(1)
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  post            Post        @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+}
+
+// ======================================================
+// CATEGORY
+// ======================================================
+
+model Category {
+
+  id              String      @id @default(uuid())
+
+  name            String
+
+  slug            String      @unique
+
+  description     String?     @db.Text
+
+  image           String?
+
+  parentId        String?
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  parent          Category?   @relation("CategoryTree", fields: [parentId], references: [id])
+
+  children        Category[]  @relation("CategoryTree")
+
+  posts           Post[]
+
+  seo             SeoMetadata?
+
+  @@index([slug])
+  @@index([parentId])
+
+}
+
+// ======================================================
+// TAG
+// ======================================================
+
+model Tag {
+
+  id              String      @id @default(uuid())
+
+  name            String
+
+  slug            String      @unique
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  posts           PostTag[]
+
+  @@index([slug])
+
+}
+
+// ======================================================
+// POST TAG
+// ======================================================
+
+model PostTag {
+
+  postId          String
+
+  tagId           String
+
+  assignedAt      DateTime    @default(now())
+
+  post            Post        @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  tag             Tag         @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+
+}
+
+// ======================================================
+// COMMENT
+// ======================================================
+
+model Comment {
+
+  id              String          @id @default(uuid())
+
+  postId          String
+
+  userId          String?
+
+  parentId        String?
+
+  guestName       String?
+
+  guestEmail      String?
+
+  content         String          @db.Text
+
+  status          CommentStatus   @default(PENDING)
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  post            Post            @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  user            User?           @relation(fields: [userId], references: [id])
+
+  parent          Comment?        @relation("CommentReplies", fields: [parentId], references: [id])
+
+  replies         Comment[]       @relation("CommentReplies")
+
+  @@index([postId])
+  @@index([userId])
+  @@index([status])
+
+}
+
+// ======================================================
+// MEDIA
+// ======================================================
+
+model Media {
+
+  id          String @id @default(uuid())
+
+  filename    String
+  originalName String
+
+  url         String
+
+  mimeType    String
+
+  extension   String?
+
+  size        Int
+
+  width       Int?
+  height      Int?
+
+  duration    Int?
+
+  provider    MediaProvider @default(LOCAL)
+
+  type        MediaType
+
+  folder      String?
+
+  altText     String?
+
+  uploadedById String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  uploadedBy  User? @relation(fields: [uploadedById], references: [id])
+
+  featuredPosts Post[] @relation("FeaturedImage")
+
+  @@index([uploadedById])
+  @@index([provider])
+  @@index([type])
+
+}
+
+// ======================================================
+// SEO
+// ======================================================
+
+model SeoMetadata {
+
+  id              String @id @default(uuid())
+
+  metaTitle       String?
+
+  metaDescription String? @db.Text
+
+  keywords        String?
+
+  canonicalUrl    String?
+
+  robots          String?
+
+  ogTitle         String?
+  ogDescription   String? @db.Text
+  ogImage         String?
+
+  twitterTitle    String?
+  twitterDescription String? @db.Text
+  twitterImage    String?
+
+  schemaMarkup    Json?
+
+  postId          String? @unique
+  pageId          String? @unique
+  categoryId      String? @unique
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  post            Post? @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  page            Page? @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  category        Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+}
+
+// ======================================================
+// PAGE
+// ======================================================
+
+model Page {
+
+  id          String @id @default(uuid())
+
+  title       String
+
+  slug        String @unique
+
+  content     String @db.Text
+
+  status      PageStatus @default(DRAFT)
+
+  template    String?
+
+  isHomepage  Boolean @default(false)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  seo         SeoMetadata?
+
+  @@index([slug])
+
+}
+
+// ======================================================
+// MENU
+// ======================================================
+
+model Menu {
+
+  id          String @id @default(uuid())
+
+  name        String
+
+  location    MenuLocation
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  items       MenuItem[]
+
+}
+
+// ======================================================
+// MENU ITEM
+// ======================================================
+
+model MenuItem {
+
+  id          String @id @default(uuid())
+
+  menuId      String
+
+  parentId    String?
+
+  title       String
+
+  url         String
+
+  icon        String?
+
+  target      String?
+
+  order       Int @default(0)
+
+  menu        Menu @relation(fields: [menuId], references: [id], onDelete: Cascade)
+
+  parent      MenuItem? @relation("MenuTree", fields: [parentId], references: [id])
+
+  children    MenuItem[] @relation("MenuTree")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([menuId])
+  @@index([parentId])
+
+}
+
+// ======================================================
+// CONTACT MESSAGE
+// ======================================================
+
+model ContactMessage {
+
+  id          String @id @default(uuid())
+
+  name        String
+
+  email       String
+
+  phone       String?
+
+  subject     String?
+
+  message     String @db.Text
+
+  ipAddress   String?
+
+  status      ContactStatus @default(NEW)
+
+  repliedAt   DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+
+}
+
+// ======================================================
+// NEWSLETTER
+// ======================================================
+
+model NewsletterSubscriber {
+
+  id          String @id @default(uuid())
+
+  email       String @unique
+
+  verified    Boolean @default(false)
+
+  subscribedAt DateTime @default(now())
+
+  unsubscribedAt DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+}
+
+// ======================================================
+// SITE SETTINGS
+// ======================================================
+
+model SiteSetting {
+
+  id          String @id @default(uuid())
+
+  key         String @unique
+
+  value       String @db.Text
+
+  type        SettingType @default(STRING)
+
+  group       String?
+
+  description String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([group])
+
+}
+
+// ======================================================
+// SOCIAL LINKS
+// ======================================================
+
+model SocialLink {
+
+  id          String @id @default(uuid())
+
+  platform    String
+
+  url         String
+
+  icon        String?
+
+  sortOrder   Int @default(0)
+
+  enabled     Boolean @default(true)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+}
+
+// ======================================================
+// NOTIFICATION
+// ======================================================
+
+model Notification {
+
+  id          String @id @default(uuid())
+
+  userId      String
+
+  title       String
+
+  message     String @db.Text
+
+  type        NotificationType @default(INFO)
+
+  isRead      Boolean @default(false)
+
+  readAt      DateTime?
+
+  createdAt   DateTime @default(now())
+
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isRead])
+
+}
+
+// ======================================================
+// AUDIT LOG
+// ======================================================
+
+model AuditLog {
+
+  id          String   @id @default(uuid())
+
+  userId      String?
+
+  action      String
+
+  entity      String
+
+  entityId    String?
+
+  oldData     Json?
+
+  newData     Json?
+
+  ipAddress   String?
+
+  userAgent   String?
+
+  createdAt   DateTime @default(now())
+
+  user        User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([entity])
+  @@index([entityId])
+
+}
+
+// ======================================================
+// USER ACTIVITY
+// ======================================================
+
+model ActivityLog {
+
+  id          String @id @default(uuid())
+
+  userId      String
+
+  activity    ActivityType
+
+  description String?
+
+  ipAddress   String?
+
+  userAgent   String?
+
+  createdAt   DateTime @default(now())
+
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([activity])
+
+}
+
+// ======================================================
+// VISITOR
+// ======================================================
+
+model Visitor {
+
+  id          String @id @default(uuid())
+
+  sessionId   String?
+
+  ipAddress   String?
+
+  country     String?
+
+  city        String?
+
+  browser     String?
+
+  os          String?
+
+  device      String?
+
+  createdAt   DateTime @default(now())
+
+  pageViews   PageView[]
+
+}
+
+// ======================================================
+// PAGE VIEW
+// ======================================================
+
+model PageView {
+
+  id          String @id @default(uuid())
+
+  visitorId   String
+
+  path        String
+
+  referrer    String?
+
+  duration    Int?
+
+  createdAt   DateTime @default(now())
+
+  visitor     Visitor @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+
+  @@index([visitorId])
+  @@index([path])
+
+}
+
+// ======================================================
+// REDIRECT
+// ======================================================
+
+model Redirect {
+
+  id          String @id @default(uuid())
+
+  fromPath    String @unique
+
+  toPath      String
+
+  type        RedirectType @default(PERMANENT)
+
+  enabled     Boolean @default(true)
+
+  hitCount    Int @default(0)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+}
