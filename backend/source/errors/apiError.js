@@ -1,0 +1,24 @@
+// ======================================================
+// ApiError.js
+// Description: Custom API Error Class
+// ======================================================
+
+class ApiError extends Error {
+    constructor(statusCode, message, errors = [], stack = "") {
+        super(message);
+
+        this.name = "ApiError";
+        this.statusCode = statusCode;
+        this.success = false;
+        this.errors = errors;
+
+        // Capture Stack Trace
+        if (stack) {
+            this.stack = stack;
+        } else {
+            Error.captureStackTrace(this, this.constructor);
+        }
+    }
+}
+
+export default ApiError;

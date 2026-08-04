@@ -301,6 +301,16 @@ Production Ready
 </html>
 `);
 });
+
+import notFound from "./source/errors/notFound.js";
+import globalErrorHandler from "./source/errors/globalErrorHandler.js";
+
+// unknown route handler
+app.use(notFound)
+
+// global error handler
+app.use(globalErrorHandler) 
+
 async function startServer() {
   await connectDatabase();
 
@@ -314,3 +324,4 @@ startServer().catch((err) => {
   console.error("[Startup] Failed:", err.message);
   process.exit(1);
 });
+
