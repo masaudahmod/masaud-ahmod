@@ -3,7 +3,7 @@
 // Description: Handle Unknown Routes (404)
 // ======================================================
 
-import ApiError from "./ApiError.js";
+import ApiError from "./apiError.js";
 
 const notFound = (req, res, next) => {
     next(
