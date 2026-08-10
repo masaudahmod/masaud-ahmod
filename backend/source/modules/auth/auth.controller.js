@@ -1,222 +1,86 @@
-// ======================================================
-// File: src/modules/auth/auth.controller.js
-// ======================================================
-
 import * as AuthService from "./auth.service.js";
 import asyncHandler from "../../middlewares/asyncHandler.js";
 import sendResponse from "../../utils/sendResponse.js";
-/**
- * ======================================================
- * Register User
- * POST /api/v1/auth/register
- * Public
- * ======================================================
- */
-export const register = asyncHandler(async (req, res) => {
-    const result = await AuthService.register(req.body);
+import {
+  accessTokenCookieOptions,
+  refreshTokenCookieOptions,
+  clearAccessTokenCookieOptions,
+  clearRefreshTokenCookieOptions,
+  trustedDeviceCookieOptions,
+  clearTrustedDeviceCookieOptions,
+} from "../../utils/cookieOptions.js";
 
-    return sendResponse(res, {
-        statusCode: 201,
-        success: true,
-        message: "Registration successful. Please verify your email.",
-        data: result,
-    });
-});
+const sendTokens = (res, result, message) => {
+  res.cookie("accessToken", result.accessToken, accessTokenCookieOptions);
+  res.cookie("refreshToken", result.refreshToken, refreshTokenCookieOptions);
+  if (result.trustedDeviceToken) res.cookie("trustedDevice", result.trustedDeviceToken, trustedDeviceCookieOptions);
+  return sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message,
+    data: { user: result.user },
+  });
+};
 
-/**
- * ======================================================
- * Verify Email OTP
- * POST /api/v1/auth/verify-email
- * Public
- * ======================================================
- */
-export const verifyEmail = asyncHandler(async (req, res) => {
-    const result = await AuthService.verifyEmail(req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Email verified successfully.",
-        data: result,
-    });
-});
-
-/**
- * ======================================================
- * Resend Verification OTP
- * POST /api/v1/auth/resend-otp
- * Public
- * ======================================================
- */
-export const resendOtp = asyncHandler(async (req, res) => {
-    const result = await AuthService.resendOtp(req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "OTP sent successfully.",
-        data: result,
-    });
-});
-
-/**
- * ======================================================
- * Login
- * POST /api/v1/auth/login
- * Public
- * ======================================================
- */
+export const register = asyncHandler(async (req, res) =>
+  sendResponse(res, {
+    statusCode: 201,
+    success: true,
+    message: "Registration successful. Please verify your email.",
+    data: await AuthService.register(req.body),
+  }),
+);
+export const verifyEmail = asyncHandler(async (req, res) =>
+  sendResponse(res, {
+    success: true,
+    message: "Email verified successfully.",
+    data: await AuthService.verifyEmail(req.body),
+  }),
+);
+export const resendOtp = asyncHandler(async (req, res) =>
+  sendResponse(res, {
+    success: true,
+    message: "OTP sent successfully.",
+    data: await AuthService.resendOtp(req.body),
+  }),
+);
 export const login = asyncHandler(async (req, res) => {
-    const result = await AuthService.login(req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Login successful.",
-        data: result,
-    });
+  const result = await AuthService.login({ ...req.body, ipAddress: req.ip, userAgent: req.get("user-agent"), trustedDeviceToken: req.cookies.trustedDevice });
+  if (result.verificationRequired) return sendResponse(res, { success: true, message: "Verification code sent to your email.", data: result });
+  return sendTokens(res, result, "Login successful.");
 });
-
-/**
- * ======================================================
- * Refresh Access Token
- * POST /api/v1/auth/refresh-token
- * Public
- * ======================================================
- */
-export const refreshToken = asyncHandler(async (req, res) => {
-    const result = await AuthService.refreshToken(req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Access token refreshed successfully.",
-        data: result,
-    });
-});
-
-/**
- * ======================================================
- * Logout Current Device
- * POST /api/v1/auth/logout
- * Private
- * ======================================================
- */
+export const verifyLogin = asyncHandler(async (req, res) =>
+  sendTokens(res, await AuthService.verifyLogin({ ...req.body, ipAddress: req.ip, userAgent: req.get("user-agent") }), "Login verified successfully."),
+);
+export const refreshToken = asyncHandler(async (req, res) =>
+  sendTokens(
+    res,
+    await AuthService.refreshToken(req.cookies.refreshToken),
+    "Session refreshed successfully.",
+  ),
+);
 export const logout = asyncHandler(async (req, res) => {
-    const result = await AuthService.logout(req.user, req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Logout successful.",
-        data: result,
-    });
+  await AuthService.logout(req.cookies.refreshToken);
+  res
+    .clearCookie("accessToken", clearAccessTokenCookieOptions)
+    .clearCookie("refreshToken", clearRefreshTokenCookieOptions);
+  return sendResponse(res, { success: true, message: "Logout successful." });
 });
-
-/**
- * ======================================================
- * Logout All Devices
- * POST /api/v1/auth/logout-all
- * Private
- * ======================================================
- */
 export const logoutAll = asyncHandler(async (req, res) => {
-    const result = await AuthService.logoutAll(req.user);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Logged out from all devices.",
-        data: result,
-    });
+  await AuthService.logoutAll(req.user.id);
+  res
+    .clearCookie("accessToken", clearAccessTokenCookieOptions)
+    .clearCookie("refreshToken", clearRefreshTokenCookieOptions)
+    .clearCookie("trustedDevice", clearTrustedDeviceCookieOptions);
+  return sendResponse(res, {
+    success: true,
+    message: "Logged out from all devices.",
+  });
 });
-
-/**
- * ======================================================
- * Forgot Password
- * POST /api/v1/auth/forgot-password
- * Public
- * ======================================================
- */
-export const forgotPassword = asyncHandler(async (req, res) => {
-    const result = await AuthService.forgotPassword(req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Password reset OTP sent successfully.",
-        data: result,
-    });
-});
-
-/**
- * ======================================================
- * Verify Password Reset OTP
- * POST /api/v1/auth/verify-reset-otp
- * Public
- * ======================================================
- */
-export const verifyResetOtp = asyncHandler(async (req, res) => {
-    const result = await AuthService.verifyResetOtp(req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "OTP verified successfully.",
-        data: result,
-    });
-});
-
-/**
- * ======================================================
- * Reset Password
- * POST /api/v1/auth/reset-password
- * Public
- * ======================================================
- */
-export const resetPassword = asyncHandler(async (req, res) => {
-    const result = await AuthService.resetPassword(req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Password reset successfully.",
-        data: result,
-    });
-});
-
-/**
- * ======================================================
- * Current Logged In User
- * GET /api/v1/auth/me
- * Private
- * ======================================================
- */
-export const me = asyncHandler(async (req, res) => {
-    const result = await AuthService.me(req.user.id);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "User fetched successfully.",
-        data: result,
-    });
-});
-
-/**
- * ======================================================
- * Change Password
- * PATCH /api/v1/auth/change-password
- * Private
- * ======================================================
- */
-export const changePassword = asyncHandler(async (req, res) => {
-    const result = await AuthService.changePassword(req.user.id, req.body);
-
-    return sendResponse(res, {
-        statusCode: 200,
-        success: true,
-        message: "Password changed successfully.",
-        data: result,
-    });
-});
+export const me = asyncHandler(async (req, res) =>
+  sendResponse(res, {
+    success: true,
+    message: "User fetched successfully.",
+    data: await AuthService.me(req.user.id),
+  }),
+);
