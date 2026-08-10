@@ -1,9 +1,11 @@
-import { Bell, Plus } from 'lucide-react'
+import { Bell, LogOut, Plus } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import { footerNavItems, mainNavItems, pageMeta } from '../../data/dummy/navigation'
 import { Button } from '../ui/Button'
 import { SearchInput } from '../ui/SearchInput'
 import { ThemeToggle } from '../ui/ThemeToggle'
+import { logout } from '../../store/authSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 
 function getSearchPlaceholder(pathname: string) {
   const allItems = [...mainNavItems, ...footerNavItems]
@@ -14,6 +16,8 @@ function getSearchPlaceholder(pathname: string) {
 }
 
 export function Header() {
+  const dispatch = useAppDispatch()
+  const user = useAppSelector((state) => state.auth.user)
   const location = useLocation()
   const meta = pageMeta[location.pathname] ?? pageMeta['/']
 
@@ -44,6 +48,7 @@ export function Header() {
               <Plus className="h-4 w-4" />
               Quick Create
             </Button>
+            <button type="button" onClick={() => void dispatch(logout())} className="flex h-9 items-center gap-2 rounded-lg border border-[var(--border)] px-2 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)]" aria-label="Sign out"><span className="hidden md:inline">{user?.username}</span><LogOut className="h-4 w-4" /></button>
             <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-[var(--border)] bg-gradient-to-br from-[var(--accent)] to-blue-400" />
           </div>
         </div>

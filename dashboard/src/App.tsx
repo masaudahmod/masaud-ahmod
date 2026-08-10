@@ -14,12 +14,17 @@ import { PortfolioProjectsPage } from './pages/PortfolioProjectsPage'
 import { SeoManagerPage } from './pages/SeoManagerPage'
 import { SkillsPage } from './pages/SkillsPage'
 import { WebsiteSettingsPage } from './pages/WebsiteSettingsPage'
+import { LoginPage } from './pages/LoginPage'
+import { AuthBootstrap, PublicOnly, RequireAuth } from './components/auth/RouteGuards'
 
 function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        <AuthBootstrap />
         <Routes>
+          <Route element={<PublicOnly />}><Route path="login" element={<LoginPage />} /></Route>
+          <Route element={<RequireAuth />}>
           <Route element={<DashboardLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="projects" element={<PortfolioProjectsPage />} />
@@ -35,6 +40,7 @@ function App() {
             <Route path="github" element={<GitHubIntegrationPage />} />
             <Route path="settings" element={<WebsiteSettingsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
           </Route>
         </Routes>
       </BrowserRouter>
