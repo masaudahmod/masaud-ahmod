@@ -4,26 +4,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import corsOptions from "./cors.config.js";
 import { connectDatabase } from "./source/lib/prisma.js";
+import authRouter from "./source/routes/auth/auth.routes.js";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5006;
-
-app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Cache-Control",
-      "Expires",
-      "Pragma",
-    ],
-    credentials: true,
-  }),
-);
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
@@ -59,6 +45,7 @@ const sessionMaxAgeMs = sessionMaxAgeDays * 24 * 60 * 60 * 1000; // Convert days
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use("/api/v1/auth", authRouter);
 
 // app.get("/", (req, res) => {
 //   res.send(

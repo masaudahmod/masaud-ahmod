@@ -8,7 +8,7 @@ const fromEnv = (process.env.CORS_ORIGINS ?? "")
 
 const allowedOrigins =
     fromEnv.length > 0
-        ? JSON.parse(fromEnv)
+        ? fromEnv
         : [
             "http://localhost:5173",
             "http://localhost:3000",
