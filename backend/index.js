@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import corsOptions from "./cors.config.js";
 import { connectDatabase } from "./source/lib/prisma.js";
 import authRouter from "./source/routes/auth/auth.routes.js";
+import adminRoutes from "./source/routes/admin/index.adminRoutes.js";
 
 dotenv.config();
 
@@ -46,6 +47,7 @@ const sessionMaxAgeMs = sessionMaxAgeDays * 24 * 60 * 60 * 1000; // Convert days
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/admin", adminRoutes);
 
 // app.get("/", (req, res) => {
 //   res.send(
