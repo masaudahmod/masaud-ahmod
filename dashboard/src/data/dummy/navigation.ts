@@ -9,6 +9,7 @@ import {
   Mail,
   Search,
   Settings,
+  ShieldCheck,
   Sparkles,
 } from 'lucide-react'
 import { GitHubIcon } from '../../components/ui/GitHubIcon'
@@ -88,6 +89,12 @@ export const mainNavItems: NavItem[] = [
     searchPlaceholder: 'Search analytics...',
   },
   {
+    label: 'Admin Management',
+    path: '/admins',
+    icon: ShieldCheck,
+    searchPlaceholder: 'Search admins...',
+  },
+  {
     label: 'GitHub Integration',
     path: '/github',
     icon: GitHubIcon,
@@ -152,6 +159,10 @@ export const pageMeta: Record<string, { title: string; subtitle: string }> = {
   '/github': {
     title: 'GitHub Integration',
     subtitle: 'Connect and sync your GitHub profile and repositories.',
+  },
+  '/admins': {
+    title: 'Admin Management',
+    subtitle: 'Manage dashboard administrators, roles, and account status.',
   },
   '/settings': {
     title: 'Website Settings',

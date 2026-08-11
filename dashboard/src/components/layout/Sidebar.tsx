@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ExternalLink, LogOut, Menu, X } from 'lucide-react'
+import { ExternalLink, Menu, X } from 'lucide-react'
 import { footerNavItems, mainNavItems } from '../../data/dummy/navigation'
 import { Button } from '../ui/Button'
 
@@ -23,7 +23,7 @@ export function Sidebar() {
           <div>
             <p className="text-sm font-semibold text-[var(--text-primary)]">Portfolio CMS</p>
             <p className="font-label text-[0.6rem] text-[var(--text-subtle)]">
-              v2.4.0 High-End CMS
+              v1.1.0 High-End CMS
             </p>
           </div>
         </div>
@@ -74,13 +74,6 @@ export function Sidebar() {
             </Link>
           )
         })}
-        <button
-          type="button"
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
-        >
-          <LogOut className="h-4 w-4" />
-          <span>Logout</span>
-        </button>
         <Button className="w-full" size="lg">
           <ExternalLink className="h-4 w-4" />
           Quick Preview

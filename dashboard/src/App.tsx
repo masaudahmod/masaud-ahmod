@@ -13,6 +13,7 @@ import { MessagesPage } from './pages/MessagesPage'
 import { PortfolioProjectsPage } from './pages/PortfolioProjectsPage'
 import { SeoManagerPage } from './pages/SeoManagerPage'
 import { SkillsPage } from './pages/SkillsPage'
+import { AdminManagementPage } from './pages/AdminManagementPage'
 import { WebsiteSettingsPage } from './pages/WebsiteSettingsPage'
 import { LoginPage } from './pages/LoginPage'
 import { AuthBootstrap, PublicOnly, RequireAuth } from './components/auth/RouteGuards'
@@ -37,6 +38,7 @@ function App() {
             <Route path="messages" element={<MessagesPage />} />
             <Route path="seo" element={<SeoManagerPage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
+            <Route path="admins" element={<AdminManagementPage />} />
             <Route path="github" element={<GitHubIntegrationPage />} />
             <Route path="settings" element={<WebsiteSettingsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
