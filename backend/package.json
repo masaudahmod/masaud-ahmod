@@ -1,0 +1,50 @@
+{
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "description": "Complete portfolio with dashboard - databse",
+  "keywords": [
+    "masaudahmod",
+    "masaud-ahmod",
+    "masaud-portfolio"
+  ],
+  "homepage": "https://github.com/masaudahmod/masaud-ahmod#readme",
+  "bugs": {
+    "url": "https://github.com/masaudahmod/masaud-ahmod/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masaudahmod/masaud-ahmod.git"
+  },
+  "license": "ISC",
+  "author": "Masaud Ahmod",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node --experimental-strip-types index.js",
+    "dev": "nodemon --exec node --experimental-strip-types index.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "prisma db seed",
+    "db:setup": "npm run db:generate && npm run db:push"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.9.0",
+    "@prisma/client": "^7.9.0",
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.10.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.5",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prisma": "^7.9.0"
+  }
+}

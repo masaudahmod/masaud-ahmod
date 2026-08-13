@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/500.css";
+@import "@fontsource/geist-sans/600.css";
+@import "@fontsource/geist-sans/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@theme {
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-primary: #2563eb;
+  --color-secondary: #64748b;
+  --color-tertiary: #bc4800;
+  --color-success: #22c55e;
+}
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-elevated: #f1f5f9;
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --draft: #bc4800;
+  --draft-soft: rgba(188, 72, 0, 0.15);
+  --published: #2563eb;
+  --published-soft: rgba(37, 99, 235, 0.15);
+  --sidebar-bg: #ffffff;
+  --header-bg: rgba(248, 250, 252, 0.85);
+  --dot-color: rgba(148, 163, 184, 0.25);
+}
+
+.dark {
+  --bg: #0f172a;
+  --surface: #161b22;
+  --surface-elevated: #1e293b;
+  --border: #1e293b;
+  --border-subtle: #334155;
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --accent: #2563eb;
+  --accent-hover: #3b82f6;
+  --accent-soft: rgba(37, 99, 235, 0.15);
+  --draft: #e38135;
+  --draft-soft: rgba(227, 129, 53, 0.15);
+  --published: #2563eb;
+  --published-soft: rgba(37, 99, 235, 0.15);
+  --sidebar-bg: #0b0e14;
+  --header-bg: rgba(15, 23, 42, 0.85);
+  --dot-color: rgba(51, 65, 85, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.font-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dashboard-dots {
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-subtle);
+}
