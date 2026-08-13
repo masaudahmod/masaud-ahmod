@@ -14,6 +14,7 @@ const port = process.env.PORT || 5006;
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
+app.use(express.static("public"));
 
 // Session configuration
 // Session duration: Can be set via SESSION_MAX_AGE_DAYS (default: 1 day = 24 hours)
@@ -49,16 +50,12 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/admin", adminRoutes);
 
-// app.get("/", (req, res) => {
-//   res.send(
-//     " This Response is from server. sit tight and wait for the next update ",
-//   );
-// });
+app.get("/api/v1/health", (req, res) => {
+  res.send(
+    "{ status: 'ok', message: 'Backend server is running successfully.' }",
+  );
+});
 
-// Auth routes - Separated for client and admin (uncomment when routers exist)
-// app.use("/api/v1/admin/auth", adminAuthRouter);
-// app.use("/api/v1/admin/blog", adminBlogRouter);
-// app.use("/api/v1/client/blog", clientBlogRouter);
 
 app.get("/", (req, res) => {
   res.send(`
@@ -69,7 +66,7 @@ app.get("/", (req, res) => {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Backend Server</title>
+<title>Server</title>
 
 <style>
 
@@ -295,10 +292,10 @@ import notFound from "./source/errors/notFound.js";
 import globalErrorHandler from "./source/errors/globalErrorHandler.js";
 
 // unknown route handler
-app.use(notFound)
+app.use(notFound);
 
 // global error handler
-app.use(globalErrorHandler) 
+app.use(globalErrorHandler);
 
 async function startServer() {
   await connectDatabase();
@@ -313,4 +310,3 @@ startServer().catch((err) => {
   console.error("[Startup] Failed:", err.message);
   process.exit(1);
 });
-
