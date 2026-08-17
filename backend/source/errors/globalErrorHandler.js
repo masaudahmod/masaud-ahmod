@@ -36,10 +36,10 @@ const globalErrorHandler = (err, req, res, next) => {
     return res.status(statusCode).json({
         success: false,
         message,
-        errors,
-        ...(process.env.NODE_ENV !== "production" && {
-            stack: err.stack,
-        }),
+        // errors,
+        // ...(process.env.NODE_ENV !== "production" && {
+        //     stack: err.stack,
+        // }),
     });
 };
 
