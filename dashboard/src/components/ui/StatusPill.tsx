@@ -1,4 +1,4 @@
-type Status = 'published' | 'draft' | 'new' | 'read' | 'replied' | 'closed'
+export type Status = 'published' | 'draft' | 'new' | 'read' | 'replied' | 'closed'
 
 interface StatusPillProps {
   status: Status
