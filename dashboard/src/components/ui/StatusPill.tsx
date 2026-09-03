@@ -1,4 +1,4 @@
-type Status = 'published' | 'draft' | 'new' | 'read' | 'replied' | 'closed'
+export type Status = 'NEW' | 'READ' | 'REPLIED' | 'CLOSED'
 
 interface StatusPillProps {
   status: Status
@@ -7,27 +7,19 @@ interface StatusPillProps {
 }
 
 const statusConfig: Record<Status, { label: string; className: string }> = {
-  published: {
-    label: 'Published',
-    className: 'bg-[var(--published-soft)] text-[var(--published)]',
-  },
-  draft: {
-    label: 'Draft',
-    className: 'bg-[var(--draft-soft)] text-[var(--draft)]',
-  },
-  new: {
+  NEW: {
     label: 'New',
     className: 'bg-[var(--accent-soft)] text-[var(--accent)]',
   },
-  read: {
+  READ: {
     label: 'Read',
     className: 'bg-[var(--surface-elevated)] text-[var(--text-muted)]',
   },
-  replied: {
+  REPLIED: {
     label: 'Replied',
     className: 'bg-emerald-500/15 text-emerald-500',
   },
-  closed: {
+  CLOSED: {
     label: 'Closed',
     className: 'bg-[var(--surface-elevated)] text-[var(--text-subtle)]',
   },

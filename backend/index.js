@@ -4,8 +4,6 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import corsOptions from "./cors.config.js";
 import { connectDatabase } from "./source/lib/prisma.js";
-import authRouter from "./source/routes/auth/auth.routes.js";
-import adminRoutes from "./source/routes/admin/index.adminRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +21,7 @@ app.use(express.static("public"));
 // - 7 days = 7
 // - 30 days = 30
 // - 0.5 day (12 hours) = 0.5
+
 const sessionMaxAgeDays = parseFloat(process.env.SESSION_MAX_AGE_DAYS || "1");
 const sessionMaxAgeMs = sessionMaxAgeDays * 24 * 60 * 60 * 1000; // Convert days to milliseconds
 
@@ -47,15 +46,24 @@ const sessionMaxAgeMs = sessionMaxAgeDays * 24 * 60 * 60 * 1000; // Convert days
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+import authRouter from "./source/routes/auth/auth.routes.js";
+import adminRoutes from "./source/routes/admin/index.adminRoutes.js";
+
+// admin routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/admin", adminRoutes);
+
+import publicRoutes from "./source/routes/public/index.publicRoutes.js";
+
+// public routes
+app.use("/api/v1/public", publicRoutes);
 
 app.get("/api/v1/health", (req, res) => {
   res.send(
     "{ status: 'ok', message: 'Backend server is running successfully.' }",
   );
 });
-
 
 app.get("/", (req, res) => {
   res.send(`
