@@ -2,9 +2,9 @@ import { useMemo, useState, type ChangeEvent, type FormEvent } from "react";
 import { Edit, Maximize2, Plus, Trash2 } from "lucide-react";
 import { Button } from "../components/ui/Button";
 import { Card } from "../components/ui/Card";
+import { useNavigate } from "react-router-dom";
 import { DataTable } from "../components/ui/DataTable";
 import { PageHeader } from "../components/ui/PageHeader";
-import { StatusPill, type Status } from "../components/ui/StatusPill";
 import { Tabs } from "../components/ui/Tabs";
 import { ConfirmModal } from "../components/ui/ConfirmModal";
 import type { Blog, CreateBlogPayload, UpdateBlogPayload } from "../types/blog";
@@ -16,6 +16,7 @@ import {
   useDeleteBlogMutation,
 } from "../services/blogApi";
 import RTE from "../components/rich-text-editor/RTE";
+import { useGetCategoriesQuery } from "../services/categoryApi";
 
 const articleTabs = [
   { id: "all", label: "ALL" },
@@ -29,7 +30,7 @@ const getStatusPill = (status: string | null | undefined) => {
     : "Draft";
 
   return {
-    status: status === "PUBLISHED" ? "published" : ("draft" as Status),
+    status: status === "PUBLISHED" ? "published" : "draft",
     label,
   };
 };
@@ -62,6 +63,9 @@ export function BlogPage() {
   const [error, setError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [formState, setFormState] = useState<FormState>(defaultFormState);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null,
+  );
   const [editPostId, setEditPostId] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<{
     open: boolean;
@@ -77,9 +81,12 @@ export function BlogPage() {
     error: postsQueryError,
   } = useGetBlogsQuery();
 
+  const { data: categories } = useGetCategoriesQuery();
+
   const [createBlog] = useCreateBlogMutation();
   const [updateBlog] = useUpdateBlogMutation();
   const [deleteBlog] = useDeleteBlogMutation();
+  const navigate = useNavigate();
 
   const filteredPosts = useMemo(() => {
     if (activeTab === "all") return postsData ?? [];
@@ -152,8 +159,6 @@ export function BlogPage() {
     event.preventDefault();
     setError(null);
 
-    console.log("Form state before submission:", formState);
-
     if (!formState.title.trim() || !formState.content.trim()) {
       setError("Title and content are required.");
       return;
@@ -163,7 +168,7 @@ export function BlogPage() {
       title: formState.title.trim(),
       excerpt: formState.excerpt.trim() || undefined,
       status: formState.status,
-      categoryId: formState.categoryId || undefined,
+      categoryId: selectedCategoryId || undefined,
       tags: formState.tags
         .split(",")
         .map((tag) => tag.trim())
@@ -219,7 +224,11 @@ export function BlogPage() {
     {
       key: "status",
       header: "STATUS",
-      render: (post: Blog) => <StatusPill {...getStatusPill(post.status)} />,
+      render: (post: Blog) => (
+        <span className="flex items-center gap-2">
+          {getStatusPill(post.status).label}
+        </span>
+      ),
     },
     {
       key: "category",
@@ -270,10 +279,19 @@ export function BlogPage() {
         title={meta.title}
         subtitle={meta.subtitle}
         action={
-          <Button size="lg" onClick={openNewPostModal}>
-            <Plus className="h-4 w-4" />
-            New Post
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button size="lg" onClick={openNewPostModal}>
+              <Plus className="h-4 w-4" />
+              New Post
+            </Button>
+            <Button
+              size="lg"
+              onClick={() => navigate("/categories")}
+              className="ml-2"
+            >
+              Category
+            </Button>
+          </div>
         }
       />
 
@@ -411,6 +429,22 @@ export function BlogPage() {
               </div>
 
               <label className="block text-sm text-(--text-muted)">
+                Category
+                <select
+                  value={selectedCategoryId || ""}
+                  onChange={(event) => setSelectedCategoryId(event.target.value || null)}
+                  className="mt-2 w-full rounded-xl border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--text-primary) outline-none focus:border-(--accent)"
+                >
+                  <option value="">Select a category</option>
+                  {categories?.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block text-sm text-(--text-muted)">
                 Excerpt
                 <textarea
                   value={formState.excerpt}
@@ -439,7 +473,7 @@ export function BlogPage() {
                 /> */}
                 <RTE
                   initialValue={formState.content}
-                  onChange={(content: any) =>
+                  onChange={(content) =>
                     setFormState((state) => ({
                       ...state,
                       content: content,
