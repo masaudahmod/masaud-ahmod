@@ -2,7 +2,8 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { DashboardLayout } from './components/layout/DashboardLayout'
 import { ThemeProvider } from './context/ThemeContext'
 import { AnalyticsPage } from './pages/AnalyticsPage'
-import { BlogPage } from './pages/BlogPage'
+import { BlogPage } from './pages/BlogPage';
+import { CategoriesPage } from './pages/CategoriesPage';
 // import { CertificatesPage } from './pages/CertificatesPage'
 import { DashboardPage } from './pages/DashboardPage'
 // import { EducationPage } from './pages/EducationPage'
@@ -30,6 +31,7 @@ function App() {
             <Route index element={<DashboardPage />} />
             <Route path="projects" element={<PortfolioProjectsPage />} />
             <Route path="blog" element={<BlogPage />} />
+            <Route path="categories" element={<CategoriesPage />} />
             <Route path="skills" element={<SkillsPage />} />
             <Route path="experience" element={<ExperiencePage />} />
             {/* <Route path="education" element={<EducationPage />} /> */}
