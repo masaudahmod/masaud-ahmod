@@ -11,7 +11,15 @@ const generateSlug = (title) => {
     .slice(0, 200);
 };
 
-const buildAuditEntry = ({ userId, action, entity, entityId, oldData = null, newData = null, req }) => {
+const buildAuditEntry = ({
+  userId,
+  action,
+  entity,
+  entityId,
+  oldData = null,
+  newData = null,
+  req,
+}) => {
   return {
     userId,
     action,
@@ -26,7 +34,19 @@ const buildAuditEntry = ({ userId, action, entity, entityId, oldData = null, new
 
 export const createPost = async (req, res, next) => {
   try {
-    const { title, excerpt, categoryId, status, isFeatured, allowComments, publishedAt, scheduledAt, tags, content, featuredImage } = req.body;
+    const {
+      title,
+      excerpt,
+      categoryId,
+      status,
+      isFeatured,
+      allowComments,
+      publishedAt,
+      scheduledAt,
+      tags,
+      content,
+      featuredImage,
+    } = req.body;
 
     if (!title || !content) {
       throw new ApiError(400, "Title and content are required.");
@@ -75,31 +95,51 @@ export const createPost = async (req, res, next) => {
           create: {
             content,
             wordCount: content.split(/\s+/).filter(Boolean).length,
-            readingTime: Math.max(1, Math.ceil(content.split(/\s+/).filter(Boolean).length / 200)),
+            readingTime: Math.max(
+              1,
+              Math.ceil(content.split(/\s+/).filter(Boolean).length / 200),
+            ),
           },
         },
         tags: {
           create: Array.isArray(tags)
-            ? tags.map((tag) => ({ tag: { connectOrCreate: { where: { slug: tag.toString().trim().toLowerCase() }, create: { name: tag.toString().trim(), slug: tag.toString().trim().toLowerCase() } } } }))
+            ? tags.map((tag) => ({
+                tag: {
+                  connectOrCreate: {
+                    where: { slug: tag.toString().trim().toLowerCase() },
+                    create: {
+                      name: tag.toString().trim(),
+                      slug: tag.toString().trim().toLowerCase(),
+                    },
+                  },
+                },
+              }))
             : [],
         },
       },
       include: {
         content: true,
         featuredImage: true,
+        category: true,
       },
     });
 
-    await prisma.auditLog.create({ data: buildAuditEntry({
-      userId: req.user.id,
-      action: "POST_CREATED",
-      entity: "Post",
-      entityId: post.id,
-      newData: post,
-      req,
-    }) });
+    await prisma.auditLog.create({
+      data: buildAuditEntry({
+        userId: req.user.id,
+        action: "POST_CREATED",
+        entity: "Post",
+        entityId: post.id,
+        newData: post,
+        req,
+      }),
+    });
 
-    res.status(201).json({ success: true, message: "Post created successfully.", data: post });
+    res.status(201).json({
+      success: true,
+      message: "Post created successfully.",
+      data: post,
+    });
   } catch (error) {
     next(error);
   }
@@ -108,11 +148,27 @@ export const createPost = async (req, res, next) => {
 export const updatePost = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { title, excerpt, categoryId, status, isFeatured, allowComments, publishedAt, scheduledAt, tags, content, featuredImage } = req.body;
+    const {
+      title,
+      excerpt,
+      categoryId,
+      status,
+      isFeatured,
+      allowComments,
+      publishedAt,
+      scheduledAt,
+      tags,
+      content,
+      featuredImage,
+    } = req.body;
 
     const existingPost = await prisma.post.findUnique({
       where: { id },
-      include: { featuredImage: true, content: true, tags: { include: { tag: true } } },
+      include: {
+        featuredImage: true,
+        content: true,
+        tags: { include: { tag: true } },
+      },
     });
 
     if (!existingPost || existingPost.deletedAt) {
@@ -123,9 +179,14 @@ export const updatePost = async (req, res, next) => {
     let featuredImageId = existingPost.featuredImageId;
 
     if (featuredImage) {
-      if (existingPost.featuredImage?.id && existingPost.featuredImage.publicId) {
+      if (
+        existingPost.featuredImage?.id &&
+        existingPost.featuredImage.publicId
+      ) {
         await deleteImage(existingPost.featuredImage.publicId);
-        await prisma.media.delete({ where: { id: existingPost.featuredImage.id } });
+        await prisma.media.delete({
+          where: { id: existingPost.featuredImage.id },
+        });
       }
 
       const uploadResult = await uploadImage(featuredImage);
@@ -154,8 +215,12 @@ export const updatePost = async (req, res, next) => {
       status,
       isFeatured,
       allowComments,
-      publishedAt: publishedAt ? new Date(publishedAt) : existingPost.publishedAt,
-      scheduledAt: scheduledAt ? new Date(scheduledAt) : existingPost.scheduledAt,
+      publishedAt: publishedAt
+        ? new Date(publishedAt)
+        : existingPost.publishedAt,
+      scheduledAt: scheduledAt
+        ? new Date(scheduledAt)
+        : existingPost.scheduledAt,
       featuredImageId,
       updatedAt: new Date(),
     };
@@ -175,12 +240,22 @@ export const updatePost = async (req, res, next) => {
                 create: {
                   content,
                   wordCount: content.split(/\s+/).filter(Boolean).length,
-                  readingTime: Math.max(1, Math.ceil(content.split(/\s+/).filter(Boolean).length / 200)),
+                  readingTime: Math.max(
+                    1,
+                    Math.ceil(
+                      content.split(/\s+/).filter(Boolean).length / 200,
+                    ),
+                  ),
                 },
                 update: {
                   content,
                   wordCount: content.split(/\s+/).filter(Boolean).length,
-                  readingTime: Math.max(1, Math.ceil(content.split(/\s+/).filter(Boolean).length / 200)),
+                  readingTime: Math.max(
+                    1,
+                    Math.ceil(
+                      content.split(/\s+/).filter(Boolean).length / 200,
+                    ),
+                  ),
                 },
               },
             }
@@ -188,7 +263,17 @@ export const updatePost = async (req, res, next) => {
         tags: Array.isArray(tags)
           ? {
               deleteMany: {},
-              create: tags.map((tag) => ({ tag: { connectOrCreate: { where: { slug: tag.toString().trim().toLowerCase() }, create: { name: tag.toString().trim(), slug: tag.toString().trim().toLowerCase() } } } })),
+              create: tags.map((tag) => ({
+                tag: {
+                  connectOrCreate: {
+                    where: { slug: tag.toString().trim().toLowerCase() },
+                    create: {
+                      name: tag.toString().trim(),
+                      slug: tag.toString().trim().toLowerCase(),
+                    },
+                  },
+                },
+              })),
             }
           : undefined,
       },
@@ -198,17 +283,23 @@ export const updatePost = async (req, res, next) => {
       },
     });
 
-    await prisma.auditLog.create({ data: buildAuditEntry({
-      userId: req.user.id,
-      action: "POST_UPDATED",
-      entity: "Post",
-      entityId: post.id,
-      oldData,
-      newData: post,
-      req,
-    }) });
+    await prisma.auditLog.create({
+      data: buildAuditEntry({
+        userId: req.user.id,
+        action: "POST_UPDATED",
+        entity: "Post",
+        entityId: post.id,
+        oldData,
+        newData: post,
+        req,
+      }),
+    });
 
-    res.json({ success: true, message: "Post updated successfully.", data: post });
+    res.json({
+      success: true,
+      message: "Post updated successfully.",
+      data: post,
+    });
   } catch (error) {
     next(error);
   }
@@ -237,16 +328,22 @@ export const deletePost = async (req, res, next) => {
       data: { deletedAt: new Date() },
     });
 
-    await prisma.auditLog.create({ data: buildAuditEntry({
-      userId: req.user.id,
-      action: "POST_DELETED",
-      entity: "Post",
-      entityId: deletedPost.id,
-      oldData: post,
-      req,
-    }) });
+    await prisma.auditLog.create({
+      data: buildAuditEntry({
+        userId: req.user.id,
+        action: "POST_DELETED",
+        entity: "Post",
+        entityId: deletedPost.id,
+        oldData: post,
+        req,
+      }),
+    });
 
-    res.json({ success: true, message: "Post soft deleted successfully.", data: { id: deletedPost.id } });
+    res.json({
+      success: true,
+      message: "Post soft deleted successfully.",
+      data: { id: deletedPost.id },
+    });
   } catch (error) {
     next(error);
   }
@@ -256,7 +353,19 @@ export const getPosts = async (req, res, next) => {
   try {
     const posts = await prisma.post.findMany({
       where: { deletedAt: null },
-      include: { featuredImage: true, content: true, tags: { include: { tag: true } }, author: { select: { id: true, username: true, email: true } } },
+      include: {
+        featuredImage: true,
+        content: true,
+        tags: { include: { tag: true } },
+        author: { select: { id: true, username: true, email: true } },
+        category: {
+          select: {
+            id: true,
+            name: true,
+            slug: true,
+          },
+        },
+      },
       orderBy: { createdAt: "desc" },
     });
 
@@ -272,7 +381,12 @@ export const getPost = async (req, res, next) => {
 
     const post = await prisma.post.findUnique({
       where: { id },
-      include: { featuredImage: true, content: true, tags: { include: { tag: true } }, author: { select: { id: true, username: true, email: true } } },
+      include: {
+        featuredImage: true,
+        content: true,
+        tags: { include: { tag: true } },
+        author: { select: { id: true, username: true, email: true } },
+      },
     });
 
     if (!post || post.deletedAt) {
