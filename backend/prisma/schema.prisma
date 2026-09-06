@@ -487,6 +487,7 @@ model Category {
 
   seo             SeoMetadata?
 
+  deletedAt       DateTime?    @default(now())
   @@index([slug])
   @@index([parentId])
 

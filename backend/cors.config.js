@@ -16,6 +16,7 @@ const allowedOrigins =
         "https://admin.trucarehealingcentre.com",
         "http://127.0.0.1:5500",
         "https://masaudahmod.github.io/portfolio",
+        "https://masaudahmod.github.io",
       ];
 
 const corsOptions = {

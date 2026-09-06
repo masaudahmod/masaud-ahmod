@@ -9,7 +9,9 @@ dotenv.config();
 const { Pool } = pg;
 
 if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is not set. Please configure your backend environment before running the seed.");
+  throw new Error(
+    "DATABASE_URL is not set. Please configure your backend environment before running the seed.",
+  );
 }
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
@@ -33,22 +35,55 @@ const roleDefinitions = [
 ];
 
 const permissionDefinitions = [
-  { resource: "users", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
+  {
+    resource: "users",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
   { resource: "roles", actions: ["READ", "UPDATE", "MANAGE"] },
   { resource: "permissions", actions: ["READ", "MANAGE"] },
-  { resource: "posts", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "categories", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "comments", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "media", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "pages", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
+  {
+    resource: "posts",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
+  {
+    resource: "categories",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
+  {
+    resource: "comments",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
+  {
+    resource: "media",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
+  {
+    resource: "pages",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
   { resource: "settings", actions: ["READ", "UPDATE", "MANAGE"] },
   { resource: "contacts", actions: ["READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "newsletters", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "menus", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "social-links", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
-  { resource: "redirects", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
+  {
+    resource: "newsletters",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
+  {
+    resource: "menus",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
+  {
+    resource: "social-links",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
+  {
+    resource: "redirects",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
   { resource: "visitors", actions: ["READ", "MANAGE"] },
-  { resource: "notifications", actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"] },
+  {
+    resource: "notifications",
+    actions: ["CREATE", "READ", "UPDATE", "DELETE", "MANAGE"],
+  },
   { resource: "audit-logs", actions: ["READ", "MANAGE"] },
 ];
 
@@ -105,7 +140,9 @@ async function assignPermissionsToSuperAdmin(permissions) {
     select: { permissionId: true },
   });
 
-  const existingPermissionIds = new Set(existingPermissions.map((item) => item.permissionId));
+  const existingPermissionIds = new Set(
+    existingPermissions.map((item) => item.permissionId),
+  );
 
   const permissionData = permissions
     .filter((permission) => !existingPermissionIds.has(permission.id))
@@ -134,7 +171,10 @@ async function ensureAdminUser() {
   const hashedPassword = await bcrypt.hash(adminCredentials.password, 10);
   const existingUser = await prisma.user.findFirst({
     where: {
-      OR: [{ email: adminCredentials.email }, { username: adminCredentials.username }],
+      OR: [
+        { email: adminCredentials.email },
+        { username: adminCredentials.username },
+      ],
     },
   });
 
