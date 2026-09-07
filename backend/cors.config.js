@@ -13,10 +13,9 @@ const allowedOrigins =
         "http://localhost:5173",
         "http://localhost:3000",
         "http://localhost:3001",
-        "https://admin.trucarehealingcentre.com",
         "http://127.0.0.1:5500",
-        "https://masaudahmod.github.io/portfolio",
-        "https://masaudahmod.github.io",
+        "https://admin-masaudahmod.vercel.app", // admin dashboard
+        "https://masaudahmod.github.io", // public portfolio link
       ];
 
 const corsOptions = {
