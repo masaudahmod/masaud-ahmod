@@ -1,16 +1,16 @@
 import type { ComponentType } from 'react'
 import {
-  BarChart3,
+  // BarChart3,
   BookOpen,
-  Briefcase,
-  FolderKanban,
-  Image,
+  // Briefcase,
+  // FolderKanban,
+  // Image,
   LayoutDashboard,
   Mail,
-  Search,
+  // Search,
   Settings,
   ShieldCheck,
-  Sparkles,
+  // Sparkles,
 } from 'lucide-react'
 import { GitHubIcon } from '../../components/ui/GitHubIcon'
 
@@ -28,30 +28,30 @@ export const mainNavItems: NavItem[] = [
     icon: LayoutDashboard,
     searchPlaceholder: 'Search...',
   },
-  {
-    label: 'Portfolio Projects',
-    path: '/projects',
-    icon: FolderKanban,
-    searchPlaceholder: 'Search resources...',
-  },
+  // {
+  //   label: 'Portfolio Projects',
+  //   path: '/projects',
+  //   icon: FolderKanban,
+  //   searchPlaceholder: 'Search resources...',
+  // },
   {
     label: 'Blog',
     path: '/blog',
     icon: BookOpen,
     searchPlaceholder: 'Search blog posts...',
   },
-  {
-    label: 'Skills',
-    path: '/skills',
-    icon: Sparkles,
-    searchPlaceholder: 'Search skills...',
-  },
-  {
-    label: 'Experience',
-    path: '/experience',
-    icon: Briefcase,
-    searchPlaceholder: 'Search experience...',
-  },
+  // {
+  //   label: 'Skills',
+  //   path: '/skills',
+  //   icon: Sparkles,
+  //   searchPlaceholder: 'Search skills...',
+  // },
+  // {
+  //   label: 'Experience',
+  //   path: '/experience',
+  //   icon: Briefcase,
+  //   searchPlaceholder: 'Search experience...',
+  // },
   /* {
     label: 'Education',
     path: '/education',
@@ -64,30 +64,30 @@ export const mainNavItems: NavItem[] = [
     icon: Award,
     searchPlaceholder: 'Search certificates...',
   }, */
-  {
-    label: 'Media Library',
-    path: '/media',
-    icon: Image,
-    searchPlaceholder: 'Search media...',
-  },
+  // {
+  //   label: 'Media Library',
+  //   path: '/media',
+  //   icon: Image,
+  //   searchPlaceholder: 'Search media...',
+  // },
   {
     label: 'Messages',
     path: '/messages',
     icon: Mail,
     searchPlaceholder: 'Search messages...',
   },
-  {
-    label: 'SEO Manager',
-    path: '/seo',
-    icon: Search,
-    searchPlaceholder: 'Search SEO entries...',
-  },
-  {
-    label: 'Analytics',
-    path: '/analytics',
-    icon: BarChart3,
-    searchPlaceholder: 'Search analytics...',
-  },
+  // {
+  //   label: 'SEO Manager',
+  //   path: '/seo',
+  //   icon: Search,
+  //   searchPlaceholder: 'Search SEO entries...',
+  // },
+  // {
+  //   label: 'Analytics',
+  //   path: '/analytics',
+  //   icon: BarChart3,
+  //   searchPlaceholder: 'Search analytics...',
+  // },
   {
     label: 'Admin Management',
     path: '/admins',
