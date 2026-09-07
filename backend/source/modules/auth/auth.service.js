@@ -132,7 +132,13 @@ export const login = async (payload) => {
     return issueTokens(user, payload.ipAddress, payload.userAgent);
   }
   const otp = await createOtp(user, "LOGIN");
-  await MailService.sendOTP({ email: user.email, name: user.username, otp, subject: "Your login verification code", purpose: "login" });
+  // await MailService.sendOTP({ email: user.email, name: user.username, otp, subject: "Your login verification code", purpose: "login" });
+  try {
+  await MailService.sendOTP({ email: user.email, name: user.username, otp,  subject: "Your login verification code", purpose: "login" });
+} catch (error) {
+  console.error("Nodemailer Error:", error);
+  throw new ApiError(500, "Failed to send OTP email. Please try again.");
+}
   return { verificationRequired: true, email: user.email };
 };
 
