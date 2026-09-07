@@ -17,12 +17,12 @@ export function Sidebar() {
     <>
       <div className="mb-6 px-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-bold text-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-(--accent) text-sm font-bold text-white">
             P
           </div>
           <div>
-            <p className="text-sm font-semibold text-[var(--text-primary)]">Portfolio CMS</p>
-            <p className="font-label text-[0.6rem] text-[var(--text-subtle)]">
+            <p className="text-sm font-semibold text-(--text-primary)">Portfolio CMS</p>
+            <p className="font-label text-[0.6rem] text-(--text-subtle)">
               v1.1.0 High-End CMS
             </p>
           </div>
