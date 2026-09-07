@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { PageHeader } from '../components/ui/PageHeader'
 import { SearchInput } from '../components/ui/SearchInput'
-import { StatusPill } from '../components/ui/StatusPill'
+// import { StatusPill } from '../components/ui/StatusPill'
 import { Tabs } from '../components/ui/Tabs'
 import { pageMeta } from '../data/dummy/navigation'
 import { projectCategories, projects, type ProjectStatus } from '../data/dummy/projects'
@@ -81,9 +81,9 @@ export function PortfolioProjectsPage() {
                 alt={project.title}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute right-3 top-3">
-                <StatusPill status={project.status} />
-              </div>
+              {/* <div className="absolute right-3 top-3">
+                <StatusPill status={project.status || 'CLOSED'} />
+              </div> */}
             </div>
             <div className="p-5">
               <h3 className="text-base font-semibold text-[var(--text-primary)]">
