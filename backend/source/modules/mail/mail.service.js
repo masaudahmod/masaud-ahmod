@@ -2,8 +2,7 @@
 // File: src/modules/mail/mail.service.js
 // ======================================================
 
-import transporter from "../../config/nodemailer.js";
-
+import resend from "../../config/resend.js";
 import ApiError from "../../errors/apiError.js";
 
 import { otpTemplate } from "./mail.template.js";
@@ -22,9 +21,9 @@ export const sendOTP = async ({
   purpose = "email",
 }) => {
   try {
-    await transporter.sendMail({
-      from: `"${process.env.APP_NAME}" <${process.env.SMTP_EMAIL}>`,
-      to: email,
+    const { data, error } = await resend.emails.send({
+      from: `"${process.env.APP_NAME}" <${process.env.EMAIL_FROM}>`,
+      to: [email],
       subject,
 
       html: otpTemplate({
@@ -34,9 +33,17 @@ export const sendOTP = async ({
       }),
     });
 
+    if (error) {
+      console.error("[Resend] Email Error:", error);
+
+      throw new Error(error.message);
+    }
+
+    console.log("[Resend] OTP email sent:", data?.id);
+
     return true;
   } catch (error) {
-    console.error(error);
+    console.error("[Mail Service] Failed to send OTP:", error);
 
     throw new ApiError(
       500,
