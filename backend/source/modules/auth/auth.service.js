@@ -154,14 +154,14 @@ const issueTokens = async (user, ipAddress, userAgent) => {
 };
 
 const validateLoginUser = async (payload) => {
-  requireFields(payload, ["login", "password"]);
-  const login = payload.login.trim().toLowerCase();
-  const user = await prisma.user.findFirst({
-    where: { OR: [{ email: login }, { username: login }] },
+  requireFields(payload, ["email", "password"]);
+  const email = payload.email.trim().toLowerCase();
+  const user = await prisma.user.findUnique({
+    where: { email },
     select: { ...userSelect, password: true },
   });
   if (!user || !(await comparePassword(payload.password, user.password)))
-    throw new ApiError(401, "Invalid email/username or password.");
+    throw new ApiError(401, "Invalid email or password.");
   if (!user.emailVerified)
     throw new ApiError(403, "Please verify your email first.");
   if (user.status !== "ACTIVE")
@@ -205,35 +205,7 @@ const createTrustedDevice = async (user, userAgent, ipAddress) => {
 
 export const login = async (payload) => {
   const user = await validateLoginUser(payload);
-
-  if (
-    await findTrustedDevice(
-      user.id,
-      payload.trustedDeviceToken,
-      payload.userAgent,
-    )
-  ) {
-    return issueTokens(user, payload.ipAddress, payload.userAgent);
-  }
-
-  const otp = await createOtp(user, "LOGIN");
-
-  console.log('OTP created.')
-  
-  await MailService.sendOTP({
-    email: user.email,
-    name: user.username,
-    otp,
-    subject: "Your login verification code",
-    purpose: "login",
-  });
-  
-  console.log('OTP sent.')
-
-  return {
-    verificationRequired: true,
-    email: user.email,
-  };
+  return issueTokens(user, payload.ipAddress, payload.userAgent);
 };
 
 export const verifyLogin = async (payload) => {

@@ -31,11 +31,10 @@ async function request<T>(path: string, init: RequestInit = {}, retryOnUnauthori
 }
 
 export type User = { id: string; username: string; email: string; role: string | null }
-export type LoginResponse = { user: User } | { verificationRequired: true; email: string }
+export type LoginResponse = { user: User }
 
 export const authApi = {
-  login: (login: string, password: string) => request<LoginResponse>('/auth/login', { method: 'POST', body: JSON.stringify({ login, password }) }),
-  verifyLogin: (email: string, otp: string, trustDevice: boolean) => request<{ user: User }>('/auth/verify-login', { method: 'POST', body: JSON.stringify({ email, otp, trustDevice }) }),
+  login: (email: string, password: string) => request<LoginResponse>('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) }),
   register: (username: string, email: string, password: string) => request<{ user: User; verificationRequired: boolean }>('/auth/register', { method: 'POST', body: JSON.stringify({ username, email, password }) }),
   verifyEmail: (email: string, otp: string) => request<{ verified: boolean }>('/auth/verify-email', { method: 'POST', body: JSON.stringify({ email, otp }) }),
   resendOtp: (email: string) => request<{ email: string }>('/auth/resend-otp', { method: 'POST', body: JSON.stringify({ email }) }),

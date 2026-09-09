@@ -34,24 +34,9 @@ export const loadSession = createAsyncThunk(
 );
 export const login = createAsyncThunk(
   "auth/login",
-  async (input: { login: string; password: string }, { rejectWithValue }) => {
+  async (input: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      return await authApi.login(input.login, input.password);
-    } catch (error) {
-      return rejectWithValue(message(error));
-    }
-  },
-);
-export const verifyLogin = createAsyncThunk(
-  "auth/verifyLogin",
-  async (
-    input: { email: string; otp: string; trustDevice: boolean },
-    { rejectWithValue },
-  ) => {
-    try {
-      return (
-        await authApi.verifyLogin(input.email, input.otp, input.trustDevice)
-      ).user;
+      return await authApi.login(input.email, input.password);
     } catch (error) {
       return rejectWithValue(message(error));
     }
@@ -131,27 +116,11 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = "user" in action.payload ? action.payload.user : null;
-        state.pendingVerificationEmail =
-          "verificationRequired" in action.payload
-            ? action.payload.email
-            : null;
-        state.loading = false;
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      })
-      .addCase(verifyLogin.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(verifyLogin.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.pendingVerificationEmail = null;
         state.loading = false;
       })
-      .addCase(verifyLogin.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       })

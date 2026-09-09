@@ -46,7 +46,6 @@ export const resendOtp = asyncHandler(async (req, res) =>
 );
 export const login = asyncHandler(async (req, res) => {
   const result = await AuthService.login({ ...req.body, ipAddress: req.ip, userAgent: req.get("user-agent"), trustedDeviceToken: req.cookies.trustedDevice });
-  if (result.verificationRequired) return sendResponse(res, { success: true, message: "Verification code sent to your email.", data: result });
   return sendTokens(res, result, "Login successful.");
 });
 export const verifyLogin = asyncHandler(async (req, res) =>
