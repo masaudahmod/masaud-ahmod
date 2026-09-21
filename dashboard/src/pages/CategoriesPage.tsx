@@ -177,7 +177,6 @@ export function CategoriesPage() {
               onClick={() => navigate("/blog")}
               className="ml-2"
             >
-              <Plus className="h-4 w-4" />
               Blogs
             </Button>
             <Button size="lg" onClick={openNewModal}>

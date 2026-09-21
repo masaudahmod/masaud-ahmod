@@ -17,13 +17,13 @@ interface DataTableProps<T> {
 export function DataTable<T>({ columns, data, keyExtractor, footer }: DataTableProps<T>) {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[640px]">
+      <table className="w-full min-w-160">
         <thead>
-          <tr className="border-b border-[var(--border)]">
+          <tr className="border-b border-(--border)">
             {columns.map((col) => (
               <th
                 key={col.key}
-                className={`pb-3 text-left font-label text-[var(--text-subtle)] ${col.className ?? ''}`}
+                className={`pb-3 text-left font-label text-(--text-subtle) ${col.className ?? ''}`}
               >
                 {col.header}
               </th>
@@ -34,7 +34,7 @@ export function DataTable<T>({ columns, data, keyExtractor, footer }: DataTableP
           {data.map((item) => (
             <tr
               key={keyExtractor(item)}
-              className="border-b border-[var(--border)] last:border-0 hover:bg-[var(--surface-elevated)]/50"
+              className="border-b border-(--border) last:border-0 hover:bg-(--surface-elevated)/50"
             >
               {columns.map((col) => (
                 <td key={col.key} className={`py-4 text-sm ${col.className ?? ''}`}>

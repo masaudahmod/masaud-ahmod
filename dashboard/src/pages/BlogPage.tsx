@@ -1,5 +1,5 @@
 import { useMemo, useState, type ChangeEvent, type FormEvent } from "react";
-import { Edit, Maximize2, Plus, Trash2 } from "lucide-react";
+import { Edit, Plus, Trash2 } from "lucide-react";
 import { Button } from "../components/ui/Button";
 import { Card } from "../components/ui/Card";
 import { useNavigate } from "react-router-dom";
@@ -352,13 +352,6 @@ export function BlogPage() {
               <h3 className="font-semibold text-(--text-primary)">
                 Draft Preview
               </h3>
-              <button
-                type="button"
-                className="text-(--text-muted)] hover:text-(--text-primary)"
-                aria-label="Expand"
-              >
-                <Maximize2 className="h-4 w-4" />
-              </button>
             </div>
             <p className="text-sm text-(--text-muted)">
               Create, edit, and publish your blog posts directly from this
