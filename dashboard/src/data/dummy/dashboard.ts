@@ -26,28 +26,5 @@ export const techStackDistribution = [
   { label: 'TypeScript', value: 30, color: '#3b82f6' },
   { label: 'Node.js', value: 15, color: '#22c55e' },
   { label: 'Other (Python, Go)', value: 10, color: '#64748b' },
-]
-
-export const inboxPreview = [
-  {
-    id: '1',
-    sender: 'Sarah Jenkins',
-    snippet: 'Interested in collaborating on a React project...',
-    time: '2h ago',
-    unread: true,
-  },
-  {
-    id: '2',
-    sender: 'DevRecruiters Inc.',
-    snippet: 'We have an opening that matches your profile...',
-    time: '5h ago',
-    unread: true,
-  },
-  {
-    id: '3',
-    sender: 'Tech Conference',
-    snippet: 'Speaker invitation for Web Summit 2026...',
-    time: '1d ago',
-    unread: false,
-  },
+  
 ]

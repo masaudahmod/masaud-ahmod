@@ -74,7 +74,7 @@ export function Sidebar() {
             </Link>
           )
         })}
-        <Button className="w-full cursor-pointer" size="lg">
+        <Button size='lg' onClick={()=> window.open('https://masaudahmod.github.io/portfolio')} className="w-full cursor-pointer">
           <ExternalLink className="h-4 w-4" />
           Masaud Ahmod
         </Button>

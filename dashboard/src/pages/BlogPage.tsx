@@ -230,20 +230,20 @@ export function BlogPage() {
         </span>
       ),
     },
-    {
-      key: "category",
-      header: "CATEGORY",
-      render: (post: Blog) => <span>{post.category?.name ?? "-"}</span>,
-    },
-    {
-      key: "time",
-      header: "READ",
-      render: (post: Blog) => (
-        <span className="text-(--text-muted)">
-          {post.content?.readingTime ?? "-"}
-        </span>
-      ),
-    },
+    // {
+    //   key: "category",
+    //   header: "CATEGORY",
+    //   render: (post: Blog) => <span>{post.category?.name ?? "-"}</span>,
+    // },
+    // {
+    //   key: "time",
+    //   header: "READ TIME",
+    //   render: (post: Blog) => (
+    //     <span className="text-(--text-muted)">
+    //       {post.content?.readingTime ?? "-"}
+    //     </span>
+    //   ),
+    // },
     {
       key: "actions",
       header: "",
